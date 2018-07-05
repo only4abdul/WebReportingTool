@@ -1,0 +1,21 @@
+  <div class="container">            
+              <form enctype="multipart/form-data" action="email/PHPMailer/send_file_upload.php" method="post">
+                <div class="form-group">
+                  <label for="email">Email address</label>
+                  <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                  <label for="subject">Subject</label>
+                  <input type="text" class="form-control" id="subject" name="subject" required>
+                </div>
+                <div class="form-group">
+                  <label for="content">Content</label>
+                  <textarea type="text" class="form-control" id="content" name="message" required></textarea>
+                </div>
+                <div class="form-group">
+                  <label for="upload">Upload your xml file ...</label>
+                  <input id="uploadBtn" class="btn btn-primary" name="userfile" type="file" id="upload" class="upload" />
+                </div>
+                <input type="submit" class="btn btn-primary" value="Send Request" >
+              </form>
+</div>
