@@ -1,0 +1,900 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header('Content-type: application/json');
+require_once('connect.php');
+
+$fields=$_GET['fields'];
+$form = (array) json_decode($fields);
+
+if(isset($form['lhj_use_id'])){
+    $lhj_use_id=$form['lhj_use_id'];
+}else{
+    $lhj_use_id='';
+}
+if(isset($form['reported_doh'])){
+    $reported_doh=$form['reported_doh'];
+}else{
+    $reported_doh='';
+}
+if(isset($form['reported_doh_date'])){
+    $reported_doh_date=$form['reported_doh_date'];
+}else{
+    $reported_doh_date='';
+}
+if(isset($form['confirmed'])){
+    $confirmed=$form['confirmed'];
+}else{
+    $confirmed='';
+}
+if(isset($form['confirmed_by'])){
+    $confirmed_by=$form['confirmed_by'];
+}else{
+    $confirmed_by='';
+}
+if(isset($form['epi'])){
+    $epi=$form['epi'];
+}else{
+    $epi='';
+}
+if(isset($form['epi_link'])){
+    $epi_link=$form['epi_link'];
+}else{
+    $epi_link='';
+}
+if(isset($form['outbreak_related'])){
+    $outbreak_related=$form['outbreak_related'];
+}else{
+    $outbreak_related='';
+}
+if(isset($form['cluster_id'])){
+    $cluster_id=$form['cluster_id'];
+}else{
+    $cluster_id='';
+}
+if(isset($form['cluster_name'])){
+    $cluster_name=$form['cluster_name'];
+}else{
+    $cluster_name='';
+}
+if(isset($form['phl_lab'])){
+    $phl_lab=$form['phl_lab'];
+}else{
+    $phl_lab='';
+}
+if(isset($form['doh_outbreak'])){
+    $doh_outbreak=$form['doh_outbreak'];
+}else{
+    $doh_outbreak='';
+}
+if(isset($form['county'])){
+    $county=$form['county'];
+}else{
+    $county='';
+}
+if(isset($form['notification_date'])){
+    $notification_date=$form['notification_date'];
+}else{
+    $notification_date='';
+}
+if(isset($form['start_date'])){
+    $start_date=$form['start_date'];
+}else{
+    $start_date='';
+}
+if(isset($form['reporter_lab'])){
+    $reporter_lab=$form['reporter_lab'];
+}else{
+    $reporter_lab='';
+}
+if(isset($form['reporter_hospital'])){
+    $reporter_hospital=$form['reporter_hospital'];
+}else{
+    $reporter_hospital='';
+}
+if(isset($form['reporter_hcp'])){
+    $reporter_hcp=$form['reporter_hcp'];
+}else{
+    $reporter_hcp='';
+}
+if(isset($form['reporter_public'])){
+    $reporter_public=$form['reporter_public'];
+}else{
+    $reporter_public='';
+}
+if(isset($form['reporter_other'])){
+    $reporter_other=$form['reporter_other'];
+}else{
+    $reporter_other='';
+}
+if(isset($form['talk_case'])){
+    $talk_case=$form['talk_case'];
+}else{
+    $talk_case='';
+}
+if(isset($form['date_interview'])){
+    $date_interview=$form['date_interview'];
+}else{
+    $date_interview='';
+}
+if(isset($form['reporter_name'])){
+    $reporter_name=$form['reporter_name'];
+}else{
+    $reporter_name='';
+}
+if(isset($form['reporter_phone'])){
+    $reporter_phone=$form['reporter_phone'];
+}else{
+    $reporter_phone='';
+}
+if(isset($form['hcp_name'])){
+    $hcp_name=$form['hcp_name'];
+}else{
+    $hcp_name='';
+}
+if(isset($form['hcp_phone'])){
+    $hcp_phone=$form['hcp_phone'];
+}else{
+    $hcp_phone='';
+}
+if(isset($form['onset_date'])){
+    $onset_date=$form['onset_date'];
+}else{
+    $onset_date='';
+}
+if(isset($form['derived'])){
+    $derived=$form['derived'];
+}else{
+    $derived='';
+}
+if(isset($form['diagnosis_date'])){
+    $diagnosis_date=$form['diagnosis_date'];
+}else{
+    $diagnosis_date='';
+}
+if(isset($form['illness_duration'])){
+    $illness_duration=$form['illness_duration'];
+}else{
+    $illness_duration='';
+}
+if(isset($form['fever'])){
+    $fever=$form['fever'];
+}else{
+    $fever='';
+}
+if(isset($form['fever_temp'])){
+    $fever_temp=$form['fever_temp'];
+}else{
+    $fever_temp='';
+}
+if(isset($form['cough'])){
+    $cough=$form['cough'];
+}else{
+    $cough='';
+}
+if(isset($form['cough_onset_date'])){
+    $cough_onset_date=$form['cough_onset_date'];
+}else{
+    $cough_onset_date='';
+}
+if(isset($form['sore_throat'])){
+    $sore_throat=$form['sore_throat'];
+}else{
+    $sore_throat='';
+}
+if(isset($form['shortness_breath'])){
+    $shortness_breath=$form['shortness_breath'];
+}else{
+    $shortness_breath='';
+}
+if(isset($form['vomiting'])){
+    $vomiting=$form['vomiting'];
+}else{
+    $vomiting='';
+}
+if(isset($form['diarrhea'])){
+    $diarrhea=$form['diarrhea'];
+}else{
+    $diarrhea='';
+}
+if(isset($form['hospitalized'])){
+    $hospitalized=$form['hospitalized'];
+}else{
+    $hospitalized='';
+}
+if(isset($form['hospital_name'])){
+    $hospital_name=$form['hospital_name'];
+}else{
+    $hospital_name='';
+}
+if(isset($form['admit_date'])){
+    $admit_date=$form['admit_date'];
+}else{
+    $admit_date='';
+}
+if(isset($form['discharge_date'])){
+    $discharge_date=$form['discharge_date'];
+}else{
+    $discharge_date='';
+}
+if(isset($form['died_illness'])){
+    $died_illness=$form['died_illness'];
+}else{
+    $died_illness='';
+}
+if(isset($form['death_date'])){
+    $death_date=$form['death_date'];
+}else{
+    $death_date='';
+}
+if(isset($form['healthcare'])){
+    $healthcare=$form['healthcare'];
+}else{
+    $healthcare='';
+}
+if(isset($form['autopsy'])){
+    $autopsy=$form['autopsy'];
+}else{
+    $autopsy='';
+}
+if(isset($form['specimens'])){
+    $specimens=$form['specimens'];
+}else{
+    $specimens='';
+}
+if(isset($form['specimens_available'])){
+    $specimens_available=$form['specimens_available'];
+}else{
+    $specimens_available='';
+}
+if(isset($form['influenza_vaccine'])){
+    $influenza_vaccine=$form['influenza_vaccine'];
+}else{
+    $influenza_vaccine='';
+}
+if(isset($form['doses'])){
+    $doses=$form['doses'];
+}else{
+    $doses='';
+}
+if(isset($form['date_shot_spray'])){
+    $date_shot_spray=$form['date_shot_spray'];
+}else{
+    $date_shot_spray='';
+}
+if(isset($form['current_condition'])){
+    $current_condition=$form['current_condition'];
+}else{
+    $current_condition='';
+}
+if(isset($form['current_condition_text'])){
+    $current_condition_text=$form['current_condition_text'];
+}else{
+    $current_condition_text='';
+}
+if(isset($form['smoker'])){
+    $smoker=$form['smoker'];
+}else{
+    $smoker='';
+}
+if(isset($form['alcohol'])){
+    $alcohol=$form['alcohol'];
+}else{
+    $alcohol='';
+}
+if(isset($form['chemotherapy'])){
+    $chemotherapy=$form['chemotherapy'];
+}else{
+    $chemotherapy='';
+}
+if(isset($form['neuromuscular'])){
+    $neuromuscular=$form['neuromuscular'];
+}else{
+    $neuromuscular='';
+}
+if(isset($form['steroid_therapy'])){
+    $steroid_therapy=$form['steroid_therapy'];
+}else{
+    $steroid_therapy='';
+}
+if(isset($form['organ_transplant'])){
+    $organ_transplant=$form['organ_transplant'];
+}else{
+    $organ_transplant='';
+}
+if(isset($form['hiv_aids'])){
+    $hiv_aids=$form['hiv_aids'];
+}else{
+    $hiv_aids='';
+}
+if(isset($form['chronic_liver'])){
+    $chronic_liver=$form['chronic_liver'];
+}else{
+    $chronic_liver='';
+}
+if(isset($form['cancer_past'])){
+    $cancer_past=$form['cancer_past'];
+}else{
+    $cancer_past='';
+}
+if(isset($form['chronic_heart'])){
+    $chronic_heart=$form['chronic_heart'];
+}else{
+    $chronic_heart='';
+}
+if(isset($form['asthma'])){
+    $asthma=$form['asthma'];
+}else{
+    $asthma='';
+}
+if(isset($form['chronic_lung'])){
+    $chronic_lung=$form['chronic_lung'];
+}else{
+    $chronic_lung='';
+}
+if(isset($form['diabetes'])){
+    $diabetes=$form['diabetes'];
+}else{
+    $diabetes='';
+}
+if(isset($form['chronic_kidney'])){
+    $chronic_kidney=$form['chronic_kidney'];
+}else{
+    $chronic_kidney='';
+}
+if(isset($form['cognitive'])){
+    $cognitive=$form['cognitive'];
+}else{
+    $cognitive='';
+}
+if(isset($form['hemoglobinopathy'])){
+    $hemoglobinopathy=$form['hemoglobinopathy'];
+}else{
+    $hemoglobinopathy='';
+}
+if(isset($form['obesity'])){
+    $obesity=$form['obesity'];
+} else{
+    $obesity='';
+}
+if(isset($form['other'])){
+    $other=$form['other'];
+} else{
+    $other='';
+}
+if(isset($form['other_text'])){
+    $other_text=$form['other_text'];
+} else{
+    $other_text='';
+}
+if(isset($form['ht'])){
+    $ht=$form['ht'];
+}else{
+    $ht='';
+} 
+if(isset($form['wt'])){
+    $wt=$form['wt'];
+}else{
+    $wt='';
+}
+if(isset($form['pregnant'])){
+    $pregnant=$form['pregnant'];
+}else{
+    $pregnant='';
+} 
+if(isset($form['weeks'])){
+    $weeks=$form['weeks'];
+}else{
+    $weeks='';
+} 
+if(isset($form['outcome'])){
+    $outcome=$form['outcome'];
+} else{
+    $outcome='';
+}
+if(isset($form['pneumonia'])){
+    $pneumonia=$form['pneumonia'];
+}else{
+    $pneumonia='';
+}
+if(isset($form['acute_respiratory'])){
+    $acute_respiratory=$form['acute_respiratory'];
+}else{
+    $acute_respiratory='';
+}
+if(isset($form['intensive_care'])){
+    $intensive_care=$form['intensive_care'];
+}else{
+    $intensive_care='';
+}
+if(isset($form['mechanical_ventilation'])){
+    $mechanical_ventilation=$form['mechanical_ventilation'];
+} else{
+    $mechanical_ventilation='';
+}
+if(isset($form['antiviral_medications'])){
+    $antiviral_medications=$form['antiviral_medications'];
+}else{
+    $antiviral_medications='';
+}
+if(isset($form['type_1'])){
+    $type_1=$form['type_1'];
+} else{
+    $type_1='';
+}
+if(isset($form['type_1_started'])){
+    $type_1_started=$form['type_1_started'];
+}else{
+    $type_1_started='';
+}
+if(isset($form['type_1_stopped'])){
+    $type_1_stopped=$form['type_1_stopped'];
+}else{
+    $type_1_stopped='';
+}
+if(isset($form['type_2'])){
+    $type_2=$form['type_2'];
+}else{
+    $type_2='';
+}
+if(isset($form['type_2_started'])){
+    $type_2_started=$form['type_2_started'];
+} else{
+    $type_2_started='';
+}
+if(isset($form['type_2_stopped'])){
+    $type_2_stopped=$form['type_2_stopped'];
+} else{
+    $type_2_stopped='';
+}
+if(isset($form['eia'])){
+    $eia=$form['eia'];
+} else{
+    $eia='';
+}
+if(isset($form['eia_test'])){
+    $eia_test=$form['eia_test'];
+}else{
+    $eia_test='';
+}
+if(isset($form['eia_date'])){
+    $eia_date=$form['eia_date'];
+}else{
+    $eia_date='';
+}
+if(isset($form['eia_specimen'])){
+    $eia_specimen=$form['eia_specimen'];
+}else{
+    $eia_specimen='';
+}
+if(isset($form['pcr'])){
+    $pcr=$form['pcr'];
+}else{
+    $pcr='';
+}
+if(isset($form['pcr_test'])){
+    $pcr_test=$form['pcr_test'];
+}else{
+    $pcr_test='';
+}
+if(isset($form['pcr_lab'])){
+    $pcr_lab=$form['pcr_lab'];
+}else{
+    $pcr_lab='';
+}
+if(isset($form['pcr_date'])){
+    $pcr_date=$form['pcr_date'];
+}else{
+    $pcr_date='';
+}
+if(isset($form['pcr_specimen'])){
+    $pcr_specimen=$form['pcr_specimen'];
+}else{
+    $pcr_specimen='';
+}
+if(isset($form['culture'])){
+    $culture=$form['culture'];
+} else{
+    $culture='';
+}
+if(isset($form['culture_test'])){
+    $culture_test=$form['culture_test'];
+}else{
+    $culture_test='';
+} 
+if(isset($form['culture_date'])){
+    $culture_date=$form['culture_date'];
+} else{
+    $culture_date='';
+}
+if(isset($form['culture_specimen'])){
+    $culture_specimen=$form['culture_specimen'];
+}else{
+    $culture_specimen='';
+}
+if(isset($form['dfa'])){
+    $dfa=$form['dfa'];
+}else{
+    $dfa='';
+}
+if(isset($form['dfa_test'])){
+    $dfa_test=$form['dfa_test'];
+}else{
+    $dfa_test='';
+}
+if(isset($form['dfa_date'])){
+    $dfa_date=$form['dfa_date'];
+}else{
+    $dfa_date='';
+}
+if(isset($form['dfa_specimen'])){
+    $dfa_specimen=$form['dfa_specimen'];
+}else{
+    $dfa_specimen='';
+}
+if(isset($form['bacterial'])){
+    $bacterial=$form['bacterial'];
+}else{
+    $bacterial='';
+}
+if(isset($form['bacterial_date'])){
+    $bacterial_date=$form['bacterial_date'];
+}else{
+    $bacterial_date='';
+}
+if(isset($form['bacterial_specimen'])){
+    $bacterial_specimen=$form['bacterial_specimen'];
+}else{
+    $bacterial_specimen='';
+}
+if(isset($form['result'])){
+    $result=$form['result'];
+}else{
+    $result='';
+}
+if(isset($form['other_result'])){
+    $other_result=$form['other_result'];
+} else{
+    $other_result='';
+}
+if(isset($form['lhj_species'])){
+    $lhj_species=$form['lhj_species'];
+}else{
+    $lhj_species='';
+}
+if(isset($form['lhj_serotype'])){
+    $lhj_serotype=$form['lhj_serotype'];
+}else{
+    $lhj_serotype='';
+}
+if(isset($form['case_name'])){
+    $case_name=$form['case_name'];
+} else{
+    $case_name='';
+}
+if(isset($form['days_from_onset'])){
+    $days_from_onset=$form['days_from_onset'];
+}else{
+    $days_from_onset='';
+}
+if(isset($form['calendar_dates'])){
+    $calendar_dates=$form['calendar_dates'];
+}else{
+    $calendar_dates='';
+}
+if(isset($form['travel_area'])){
+    $travel_area=$form['travel_area'];
+} else{
+    $travel_area='';
+}
+if(isset($form['travel_state'])){
+    $travel_state=$form['travel_state'];
+}else{
+    $travel_state='';
+}
+if(isset($form['outof'])){
+    $outof=$form['outof'];
+}else{
+    $outof='';
+}
+if(isset($form['dates_locations'])){
+    $dates_locations=$form['dates_locations'];
+}else{
+    $dates_locations='';
+}
+if(isset($form['number_people'])){
+    $number_people=$form['number_people'];
+}else{
+    $number_people='';
+}
+if(isset($form['number_people_text'])){
+    $number_people_text=$form['number_people_text'];
+} else{
+    $number_people_text='';
+}
+if(isset($form['contact'])){
+    $contact=$form['contact'];
+}else{
+    $contact='';
+}
+if(isset($form['health_care'])){
+    $health_care=$form['health_care'];
+}else{
+    $health_care='';
+}
+if(isset($form['patient_interviewed'])){
+    $patient_interviewed=$form['patient_interviewed'];
+}else{
+    $patient_interviewed='';
+}
+if(isset($form['no_risk'])){
+    $no_risk=$form['no_risk'];
+}else{
+    $no_risk='';
+}
+if(isset($form['probably_occur'])){
+    $probably_occur=$form['probably_occur'];
+}else{
+    $probably_occur='';
+}
+if(isset($form['probably_occur_country'])){
+    $probably_occur_country=$form['probably_occur_country'];
+}else{
+    $probably_occur_country='';
+}
+if(isset($form['exposure_details'])){
+    $exposure_details=$form['exposure_details'];
+}else{
+    $exposure_details='';
+}
+if(isset($form['health_care_setting'])){
+    $health_care_setting=$form['health_care_setting'];
+}else{
+    $health_care_setting='';
+}
+if(isset($form['health_exposure'])){
+    $health_exposure=$form['health_exposure'];
+}else{
+    $health_exposure='';
+}
+if(isset($form['health_setting'])){
+    $health_setting=$form['health_setting'];
+}else{
+    $health_setting='';
+}
+if(isset($form['health_setting_other'])){
+    $health_setting_other=$form['health_setting_other'];
+}else{
+    $health_setting_other='';
+}
+if(isset($form['congregate'])){
+    $congregate=$form['congregate'];
+}else{
+    $congregate='';
+}
+if(isset($form['congregate_living'])){
+    $congregate_living=$form['congregate_living'];
+}else{
+    $congregate_living='';    
+}
+if(isset($form['congregate_living_other'])){
+    $congregate_living_other=$form['congregate_living_other'];
+}else{
+    $congregate_living_other='';
+}
+if(isset($form['poultry'])){
+    $poultry=$form['poultry'];
+}else{
+    $poultry='';
+}
+if(isset($form['poultry_type'])){
+    $poultry_type=$form['poultry_type'];
+}else{
+    $poultry_type='';
+}
+if(isset($form['poultry_type_other'])){
+    $poultry_type_other=$form['poultry_type_other'];
+} else{
+    $poultry_type_other='';
+}
+if(isset($form['poultry_animals'])){
+    $poultry_animals=$form['poultry_animals'];
+}else{
+    $poultry_animals='';
+}
+if(isset($form['poultry_description'])){
+    $poultry_description=$form['poultry_description'];
+}else{
+    $poultry_description='';
+}
+if(isset($form['nosocomial'])){
+    $nosocomial=$form['nosocomial'];
+}else{
+    $nosocomial='';
+}
+if(isset($form['work'])){
+    $work=$form['work'];
+}else{
+    $work='';
+}
+if(isset($form['facility_name'])){
+    $facility_name=$form['facility_name'];
+}else{
+    $facility_name='';
+}
+if(isset($form['close_contact'])){
+    $close_contact=$form['close_contact'];
+}else{
+    $close_contact='';
+}
+if(isset($form['outbreak'])){
+    $outbreak=$form['outbreak'];
+}else{
+    $outbreak='';
+}
+if(isset($form['home_isolation'])){
+    $home_isolation=$form['home_isolation'];
+}else{
+    $home_isolation='';
+}
+if(isset($form['home_isolation_date'])){
+    $home_isolation_date=$form['home_isolation_date'];
+}else{
+    $home_isolation_date='';
+}
+if(isset($form['contact_quarantine'])){
+    $contact_quarantine=$form['contact_quarantine'];
+}else{
+    $contact_quarantine='';
+}
+if(isset($form['contact_number'])){
+    $contact_number=$form['contact_number'];
+}else{
+    $contact_number='';
+}
+if(isset($form['facility_notified'])){
+    $facility_notified=$form['facility_notified'];
+}else{
+    $facility_notified='';
+}
+if(isset($form['notes'])){
+    $notes=$form['notes'];
+}else{
+    $notes='';
+}
+if(isset($form['investigator'])){
+    $investigator=$form['investigator'];
+}else{
+    $investigator='';
+}
+if(isset($form['investigator_phone'])){
+    $investigator_phone=$form['investigator_phone'];
+}else{
+    $investigator_phone='';
+}
+if(isset($form['local_health'])){
+    $local_health=$form['local_health'];
+}else{
+    $local_health='';
+}
+if(isset($form['complete_date'])){
+    $complete_date=$form['complete_date'];
+}else{
+    $complete_date='';
+}
+if(isset($form['record_date'])){
+    $record_date=$form['record_date'];
+}else{
+    $record_date='';
+}
+if(isset($form['id_patient'])){
+    $id_patient=$form['id_patient'];
+}else{
+    $id_patient='';
+}
+
+
+if(isset($form['id'])) {
+
+    $sql = "update washington set lhj_use_id='$lhj_use_id',
+    reported_doh='$reported_doh',
+    reported_doh_date='$reported_doh_date',
+    confirmed='$confirmed',
+    confirmed_by='$confirmed_by',
+    epi='$epi',epi_link='$epi_link',
+    outbreak_related='$outbreak_related',
+    cluster_id='$cluster_id',cluster_name='$cluster_name',phl_lab='$phl_lab',doh_outbreak='$doh_outbreak',county='$county',notification_date='$notification_date',
+    start_date='$start_date',reporter_lab='$reporter_lab',reporter_hospital='$reporter_hospital',reporter_hcp='$reporter_hcp',reporter_public='$reporter_public',reporter_other='$reporter_other',talk_case='$talk_case',
+    date_interview='$date_interview',reporter_name='$reporter_name',reporter_phone='$reporter_phone',hcp_name='$hcp_name',
+    hcp_phone='$hcp_phone',onset_date='$onset_date',derived='$derived',diagnosis_date='$diagnosis_date',illness_duration='$illness_duration',fever='$fever',fever_temp='$fever_temp',cough='$cough',
+    cough_onset_date='$cough_onset_date',sore_throat='$sore_throat',shortness_breath='$shortness_breath',vomiting='$vomiting',diarrhea='$diarrhea',
+    hospitalized='$hospitalized',hospital_name='$hospital_name',admit_date='$admit_date',discharge_date='$discharge_date',died_illness='$died_illness',
+    death_date='$death_date',healthcare='$healthcare',autopsy='$autopsy',specimens='$specimens',specimens_available='$specimens_available',influenza_vaccine='$influenza_vaccine',doses='$doses',date_shot_spray='$date_shot_spray',
+    current_condition='$current_condition',current_condition_text='$current_condition_text',smoker='$smoker',alcohol='$alcohol',chemotherapy='$chemotherapy',neuromuscular='$neuromuscular',steroid_therapy='$steroid_therapy',organ_transplant='$organ_transplant',hiv_aids='$hiv_aids',
+    chronic_liver='$chronic_liver',cancer_past='$cancer_past',chronic_heart='$chronic_heart',asthma='$asthma',chronic_lung='$chronic_lung',diabetes='$diabetes',chronic_kidney='$chronic_kidney',cognitive='$cognitive',
+    hemoglobinopathy='$hemoglobinopathy',obesity='$obesity',other='$other',other_text='$other_text',ht='$ht',wt='$wt',pregnant='$pregnant',weeks='$weeks',
+    outcome='$outcome',pneumonia='$pneumonia',acute_respiratory='$acute_respiratory',intensive_care='$intensive_care',mechanical_ventilation='$mechanical_ventilation',antiviral_medications='$antiviral_medications',type_1='$type_1',type_1_started='$type_1_started',type_1_stopped='$type_1_stopped',
+    type_2='$type_2',type_2_started='$type_2_started',type_2_stopped='$type_2_stopped',eia='$eia',eia_test='$eia_test',eia_date='$eia_date',eia_specimen='$eia_specimen',pcr='$pcr',
+    pcr_test='$pcr_test',pcr_lab='$pcr_lab',pcr_date='$pcr_date',pcr_specimen='$pcr_specimen',culture='$culture',culture_test='$culture_test',culture_date='$culture_date',culture_specimen='$culture_specimen',
+    dfa='$dfa',dfa_test='$dfa_test',dfa_date='$dfa_date',dfa_specimen='$dfa_specimen',bacterial='$bacterial',bacterial_date='$bacterial_date',bacterial_specimen='$bacterial_specimen',result='$result',other_result='$other_result',
+    lhj_species='$lhj_species',lhj_serotype='$lhj_serotype',case_name='$case_name',days_from_onset='$days_from_onset',calendar_dates='$calendar_dates',travel_area='$travel_area',travel_state='$travel_state',outof='$outof',dates_locations='$dates_locations',number_people='$number_people',number_people_text='$number_people_text',
+    contact='$contact',health_care='$health_care',patient_interviewed='$patient_interviewed',no_risk='$no_risk',probably_occur='$probably_occur',probably_occur_country='$probably_occur_country',exposure_details='$exposure_details',health_care_setting='$health_care_setting',
+    health_exposure='$health_exposure',health_setting='$health_setting',health_setting_other='$health_setting_other',congregate='$congregate',congregate_living='$congregate_living',congregate_living_other='$congregate_living_other',poultry='$poultry',poultry_type='$poultry_type',poultry_type_other='$poultry_type_other',poultry_animals='$poultry_animals',
+    poultry_description='$poultry_description',nosocomial='$nosocomial',work='$work',facility_name='$facility_name',close_contact='$close_contact',outbreak='$outbreak',home_isolation='$home_isolation',home_isolation_date='$home_isolation_date',contact_quarantine='$contact_quarantine',contact_number='$contact_number',facility_notified='$facility_notified',notes='$notes',
+    investigator='$investigator',investigator_phone='$investigator_phone',local_health='$local_health',
+    complete_date='$complete_date',record_date='$record_date' where id_patient='$id_patient';";
+        
+    
+    if (mysqli_query($conn, $sql)) 
+    {
+        $res = array("response" => "updated");
+        echo json_encode($res);
+    } 
+    else 
+    {
+        $res = array("response" => "error");
+        //echo json_encode($res);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+
+}else{
+
+$sql = "INSERT INTO `washington` (`lhj_use_id`, `reported_doh`, `reported_doh_date`, `confirmed`, `confirmed_by`, `epi`, `epi_link`,
+    `outbreak_related`, `cluster_id`, `cluster_name`, `phl_lab`, `doh_outbreak`, `county`, `notification_date`, `start_date`,
+    `reporter_lab`, `reporter_hospital`, `reporter_hcp`, `reporter_public`, `reporter_other`, `talk_case`, `date_interview`,
+    `reporter_name`, `reporter_phone`, `hcp_name`, `hcp_phone`, `onset_date`, `derived`, `diagnosis_date`, `illness_duration`,
+    `fever`, `fever_temp`, `cough`, `cough_onset_date`, `sore_throat`, `shortness_breath`, `vomiting`, `diarrhea`, `hospitalized`,
+    `hospital_name`, `admit_date`, `discharge_date`, `died_illness`, `death_date`, `healthcare`, `autopsy`, `specimens`,
+    `specimens_available`, `influenza_vaccine`, `doses`, `date_shot_spray`, `current_condition`, `current_condition_text`,
+    `smoker`, `alcohol`, `chemotherapy`, `neuromuscular`, `steroid_therapy`, `organ_transplant`, `hiv_aids`, `chronic_liver`,
+    `cancer_past`, `chronic_heart`, `asthma`, `chronic_lung`, `diabetes`, `chronic_kidney`, `cognitive`, `hemoglobinopathy`,
+    `obesity`, `other`, `other_text`, `ht`, `wt`, `pregnant`, `weeks`, `outcome`, `pneumonia`, `acute_respiratory`,
+    `intensive_care`, `mechanical_ventilation`, `antiviral_medications`, `type_1`, `type_1_started`, `type_1_stopped`,
+    `type_2`, `type_2_started`, `type_2_stopped`, `eia`, `eia_test`, `eia_date`, `eia_specimen`, `pcr`, `pcr_test`,
+    `pcr_lab`, `pcr_date`, `pcr_specimen`, `culture`, `culture_test`, `culture_date`, `culture_specimen`, `dfa`,
+    `dfa_test`, `dfa_date`, `dfa_specimen`, `bacterial`, `bacterial_date`, `bacterial_specimen`, `result`,
+    `other_result`, `lhj_species`, `lhj_serotype`, `case_name`, `days_from_onset`, `calendar_dates`, `travel_area`,
+    `travel_state`, `outof`, `dates_locations`, `number_people`, `number_people_text`, `contact`, `health_care`,
+    `patient_interviewed`, `no_risk`, `probably_occur`, `probably_occur_country`, `exposure_details`,
+    `health_care_setting`, `health_exposure`, `health_setting`, `health_setting_other`, `congregate`, 
+    `congregate_living`, `congregate_living_other`, `poultry`, `poultry_type`, `poultry_type_other`, 
+    `poultry_animals`, `poultry_description`, `nosocomial`, `work`,`facility_name`,`close_contact`,`outbreak`,`home_isolation`,
+    `home_isolation_date`,`contact_quarantine`,`contact_number`,`facility_notified`,`notes`,`investigator`,`investigator_phone`,
+    `local_health`,`complete_date`,`record_date`,`id_patient`) VALUES ('$lhj_use_id', '$reported_doh', '$reported_doh_date', '$confirmed', '$confirmed_by', '$epi', '$epi_link',
+    '$outbreak_related', '$cluster_id', '$cluster_name', '$phl_lab', '$doh_outbreak', '$county', '$notification_date', '$start_date',
+    '$reporter_lab', '$reporter_hospital', '$reporter_hcp', '$reporter_public', '$reporter_other', '$talk_case', '$date_interview',
+    '$reporter_name', '$reporter_phone', '$hcp_name', '$hcp_phone', '$onset_date', '$derived', '$diagnosis_date', '$illness_duration',
+    '$fever', '$fever_temp', '$cough', '$cough_onset_date', '$sore_throat', '$shortness_breath', '$vomiting', '$diarrhea', '$hospitalized',
+    '$hospital_name', '$admit_date', '$discharge_date', '$died_illness', '$death_date', '$healthcare', '$autopsy', '$specimens',
+    '$specimens_available','$influenza_vaccine','$doses','$date_shot_spray','$current_condition','$current_condition_text',
+    '$smoker','$alcohol','$chemotherapy','$neuromuscular','$steroid_therapy','$organ_transplant','$hiv_aids','$chronic_liver',
+    '$cancer_past','$chronic_heart','$asthma','$chronic_lung','$diabetes','$chronic_kidney','$cognitive','$hemoglobinopathy',
+    '$obesity','$other','$other_text','$ht','$wt','$pregnant','$weeks','$outcome','$pneumonia','$acute_respiratory',
+    '$intensive_care','$mechanical_ventilation','$antiviral_medications','$type_1','$type_1_started','$type_1_stopped','$type_2',
+    '$type_2_started','$type_2_stopped','$eia','$eia_test','$eia_date', '$eia_specimen',
+    '$pcr','$pcr_test','$pcr_lab','$pcr_date','$pcr_specimen','$culture','$culture_test','$culture_date','$culture_specimen',
+    '$dfa','$dfa_test','$dfa_date','$dfa_specimen','$bacterial','$bacterial_date','$bacterial_specimen','$result',
+    '$other_result', '$lhj_species', '$lhj_serotype', '$case_name', '$days_from_onset', '$calendar_dates', '$travel_area',
+    '$travel_state', '$outof', '$dates_locations', '$number_people', '$number_people_text', '$contact', '$health_care','$patient_interviewed', 
+    '$no_risk', '$probably_occur', '$probably_occur_country', '$exposure_details','$health_care_setting', '$health_exposure', '$health_setting', 
+    '$health_setting_other', '$congregate', '$congregate_living', '$congregate_living_other', '$poultry', '$poultry_type', 
+    '$poultry_type_other', '$poultry_animals', '$poultry_description', '$nosocomial', '$work','$facility_name','$close_contact',
+    '$outbreak','$home_isolation','$home_isolation_date','$contact_quarantine','$contact_number','$facility_notified','$notes',
+    '$investigator','$investigator_phone','$local_health','$complete_date','$record_date','$id_patient')";
+
+    if (mysqli_query($conn, $sql)) 
+    {
+        $last_id = $conn->insert_id;
+        $res = array("response" => "added","last_id" => $last_id);
+        echo json_encode($res);
+    } 
+    else 
+    {
+        $res = array("response" => "error");
+        //echo json_encode($res);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+}
+
+mysqli_close($conn);
+
+?>

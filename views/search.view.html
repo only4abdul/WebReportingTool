@@ -1,0 +1,93 @@
+    <style>
+    
+    .border
+{
+  border-radius: 20px 20px 20px 20px;
+  height:35px;
+}
+     
+    </style>
+
+    <div class="container">
+            <div class="col-sm-3 col-md-1 sidebar" style="top:0px;background-color:#696969;">
+          <ul class="nav nav-sidebar">
+            <li><span style="color:white;margin:10px;">SUBMIT NEW</span></li>
+          </ul>   
+        </div>
+
+        <div class="panel panel-default" style="margin-left: 10%;margin-top:-3%;">
+            <div class="panel-body">
+         
+<div class="col col-md-5 col-md-offset-3" style="display:inline-flex;">
+<input type="text" class="largeur form-control" placeholder="Patient ID ex, A2345VM" size="40" ng-model="id" style="width:50%;" />
+<button type="button" class="btn btn-info border" style="margin-left: 20%;color: black;" ng-click="getPatientByCode(id)">Search</button>
+</div>
+<br>
+<br>
+<div class="col col-md-5 col-md-offset-3">
+<p class="test" style="text-decoration:underline;color:#5bc0de;">Advanced Search</p>
+</div>
+
+<div class="col col-md-5 col-md-offset-3" style="background-color: #F0FFF0;display:none;" id="showme">
+ 
+<h5>Advanced Search</h5>
+<input class="form-control" type="text" placeholder="Patient First Name" size="50" ng-model="patient.first" />
+<br>
+<input class="form-control" type="text" placeholder="Patient Last Name" size="50" ng-model="patient.last" />
+<br>
+<div style="display:inline-flex;width:100%">
+<span style="font-weight:700;width: 50%;">Date Of Bith</span>
+<input class="form-control" type="date" ng-model="patient.date"/>
+</div>
+<br>
+<br>
+<div class="col col-md-5" style="width:100%;">
+<button type="button" class="btn btn-primary border" style="float:right;color: black;background-color:#5bc0de;" ng-click="getPatients(patient)">Search</button>
+<br>
+</div>
+</div>
+
+<div class="col col-md-5 col-md-offset-3">
+<h5>{{message}}</h5>
+<div style="background-color:#ADD8E6;width:400px;height:40px;padding:2px" ng-repeat="patient in patients">
+<span> {{patient.first_name}} &nbsp;&nbsp;&nbsp;&nbsp; {{patient.last_name}}</span>
+<span ng-show="check == patient.id" class="glyphicon glyphicon-ok" style="color: green;"></span>
+<div style="float:right">
+  <button type="button" class="btn btn-primary border" ng-click="selectedPatient(patient)">Select</button>
+  </div> 
+</div>
+
+
+<br>
+<br>
+
+
+    <h5 style="display:inline">Case Report Form</h5> 
+    
+    <select class="form-control" style="display:inline" ng-model="form" ng-change="registerForm(form)">
+      <option ng-repeat="form in forms" value="{{form.id}}">{{form.name}}</option>
+    </select>
+  
+<br>
+<br>
+
+
+    <button ng-if="!form" disabled type="button" id="largbut"class="btn btn-primary border" ng-click="generateForm()">Next | GENERATE FORM</button>
+    <button ng-if="form" type="button" id="largbut"class="btn btn-primary border" ng-click="generateForm()">Next | GENERATE FORM</button>
+
+  </div>
+
+</div>
+
+</div>
+
+</div>
+
+<script type="text/javascript">
+ $(document).ready(function(){
+    $(".test").click(function(){
+      $("#showme").toggle();
+    });
+
+});
+</script>  

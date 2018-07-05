@@ -1,0 +1,51 @@
+<div class="container">
+        <div class="col-sm-3 col-md-1 sidebar" style="top:0px;background-color:#696969;">
+          <ul class="nav nav-sidebar">
+            <li><span style="color:white;margin:10px;">SUBMIT NEW</span></li>
+          </ul>   
+        </div>
+        <div class="row col-md-offset-8" style="display:inline-flex;">
+        <a href="" style="margin-right:10px;">Login</a>
+        <span style="color: #848484;">Register</span>
+        </div>
+        <center>
+        <p style="color: #848484;">Hello</p>
+        <p style="color: #848484;">Please fill out the form bellow to get started</p>
+        </center>
+      
+<div class="row">
+      <div class="col-sm-6 col-md-6 col-md-offset-3">
+      <div class="alert alert-info" ng-if="message != undefined ">
+          <strong>{{message}}</strong>
+      </div>
+                <div class="row">
+                  <div class="col-sm-12 col-md-10  col-md-offset-1 ">
+                    <div class="form-group">
+                      <div class="input-group" style="height:50px;">
+                        <span class="input-group-addon" style="background-color:#60b5ff;color: white;width: 31%;">
+                          Login
+                        </span> 
+                        <input class="form-control" placeholder="Username" name="loginname" type="text" autofocus ng-model="login" style="height:100%;width: 185%;">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <div class="input-group" style="height:50px;">
+                        <span class="input-group-addon" style="background-color:#60b5ff;color: white;width:31%;">
+                          Password
+                        </span>
+                        <input class="form-control" placeholder="Password" name="password" type="password" ng-model="mdp" style="height:100%;width: 185%;">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                    <span style="margin-left:30%;color: #848484;">No account ? <a href="">Signup</a></span>
+                    <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="connfunction()" style="width: 25%;
+    float: right;background-color:#60b5ff;border:0;">Login</button>
+                    </div>
+                  </div>
+                </div>
+      </div>
+</div>
+  <div class="row">
+
+  </div> 
+</div>

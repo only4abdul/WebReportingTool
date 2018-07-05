@@ -1,0 +1,676 @@
+<div class="container">
+
+<div style="display:inline-flex;">
+  <div><img src="images/CDC.png"></div>
+  <div><h2 style="text-align: center;">Human Infection with Novel Influenza A Virus Case Report Form</h2></div>
+  <div style="width: 12%;">
+    <br>  Form Approved
+    <br>  OMB No. 0920-0004
+    <br>  Exp. Date 8/31/2014
+  </div>
+</div>
+<hr style="border-top: 6px solid #000;">
+     <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+<tr>
+    <td colspan="5">
+        State: <input type="text" ng-model="fields.state" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date reported to health department: <input type="date" ng-model="fields.date_reported" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date interview completed: <input type="date" ng-model="fields.date_interview" />
+
+    </td>
+</tr>
+<tr>
+    <td colspan="5">
+        State Epi ID: <input type="text" ng-model="fields.state_epi" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;State Lab ID: <input type="text" ng-model="fields.state_lab" />
+    </td>
+</tr>
+<tr>
+    <td colspan="5">
+        Household ID (CDC use only): <input type="text" ng-model="fields.household_id" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CDC ID (CDC use only): <input type="text" ng-model="fields.cdc_id" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cluster ID (CDC use only): <input type="text" ng-model="fields.cluster_id" />
+    </td>
+</tr>
+
+</table>
+<span>1. At the time of this report, is the case</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="status" ng-model="fields.time_report" ng-value="'Confirmed'"/> Confirmed <input type="radio" name="status" ng-model="fields.time_report" ng-value="'Probable'" /> Probable <input type="radio" name="status" ng-model="fields.time_report" ng-value="'Case'" /> Case under investigation (skip to Q.3) <input type="radio" name="status" ng-model="fields.time_report" ng-value="'NotCase'" /> Not a case (skip to Q.3) <br>
+
+<span>2. What is the subtype?</span><br>
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="subtype" ng-model="fields.subtype" ng-value="'H1N1'" /> Influenza A(H1N1) variant <input type="radio" name="subtype" ng-model="fields.subtype" ng-value="'H1N2'" /> Influenza A(H1N2) variant <input type="radio" name="subtype" ng-model="fields.subtype" ng-value="'H3N2'" /> Influenza A(H3N2) variant <input type="radio" name="subtype" ng-model="fields.subtype" ng-value="'H5N1'" /> Influenza A(H5N1) <input type="radio" name="subtype" ng-model="fields.subtype" ng-value="'H7N9'" /> Influenza A(H7N9) <br>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="subtype" ng-model="fields.subtype" ng-value="'Other'" /> Other <input type="text" ng-model="fields.subtype_other" /> <input type="radio" name="subtype" ng-model="fields.subtype" ng-value="'Unknown'" /> Unknown <br><br>
+<table border="2" width="100%">
+<tr>
+    <td colspan="5" style="background-color:white;color:black"><b>&nbsp;&nbsp;&nbsp;Demographic Information</b></td>
+</tr>
+</table>
+<br>
+<span>1. Patient Name: <b>(last)</b> {{patient.last_name}}</span><br>
+<span>2. Patient Name: <b>(first)</b> {{patient.first_name}}</span><br>
+<span>3. Date of birth: {{patient.date_of_birth}}</span><br>
+<span>4. County of residence: {{patient.country}}</span><br>
+<span>5. Race: <ul><li ng-repeat="race in races">{{race.race}}</li></ul></span><br>
+<span>6. Ethnicity: {{patient.ethnicity}}</span><br>
+<span>7. Sex: {{patient.sex}}</span><br><br>
+<table border="2" width="100%">
+<tr>
+<td colspan="5" style="background-color:white;color:black"><b>&nbsp;&nbsp;&nbsp;Symptoms, Clinical Course, Treatment, Testing, and Outcome</b></td>
+</tr>
+</table>
+<br>
+
+<span>8. What date did symptoms associated with this illness start? <input type="date" ng-model="fields.date_symptoms"></span><br>
+
+<span>9. During this illness, did the patient experience any of the following?</span><br>
+       <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Symptom</th>
+                <th>Symptom Present?</th>
+                <th>Symptom</th>
+                <th>Symptom Present?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Fever (highest temp _________ oF)</td>
+                <td><input type="radio" name="fever" ng-model="fields.fever" ng-value="'Yes'" /> Yes <input type="radio" name="fever" ng-model="fields.fever" ng-value="'No'" /> No <input type="radio" name="fever" ng-model="fields.fever" ng-value="'Unk'" /> Unk</td>
+                <td>Shortness of breath</td>
+                <td><input type="radio" name="shortness_breath" ng-model="fields.shortness_breath" ng-value="'Yes'" /> Yes <input type="radio" name="shortness_breath" ng-model="fields.shortness_breath" ng-value="'No'" /> No <input type="radio" name="shortness_breath" ng-model="fields.shortness_breath" ng-value="'Unk'" /> Unk</td>
+              </tr>
+
+              <tr>
+                <td colspan="2">If fever present, date of onset <input type="date" ng-model="fields.fever_date"></td>
+                <td>Vomiting</td>
+                <td><input type="radio" name="vomiting" ng-model="fields.vomiting" ng-value="'Yes'" /> Yes <input type="radio" name="vomiting" ng-model="fields.vomiting" ng-value="'No'" /> No <input type="radio" name="vomiting" ng-model="fields.vomiting" ng-value="'Unk'" /> Unk</td>
+                </tr>
+
+                <tr>
+                <td>Felt feverish</td>
+                <td><input type="radio" name="felt_feverish" ng-model="fields.felt_feverish" ng-value="'Yes'" /> Yes <input type="radio" name="felt_feverish" ng-model="fields.felt_feverish" ng-value="'No'" /> No <input type="radio" name="felt_feverish" ng-model="fields.felt_feverish" ng-value="'Unk'" /> Unk</td>
+                <td>Diarrhea</td>
+                <td><input type="radio" name="diarrhea" ng-model="fields.diarrhea" ng-value="'Yes'" /> Yes <input type="radio" name="diarrhea" ng-model="fields.diarrhea" ng-value="'No'" /> No <input type="radio" name="diarrhea" ng-model="fields.diarrhea" ng-value="'Unk'" /> Unk</td>
+                  </tr>
+
+                  <tr>
+                <td colspan="2">If fever present, date of onset <input type="date" ng-model="fields.felt_feverish_date"></td>
+                <td>Eye infection/redness</td>
+                <td><input type="radio" name="eye_infection" ng-model="fields.eye_infection" ng-value="'Yes'" /> Yes <input type="radio" name="eye_infection" ng-model="fields.eye_infection" ng-value="'No'" /> No <input type="radio" name="eye_infection" ng-model="fields.eye_infection" ng-value="'Unk'" /> Unk</td>
+                    </tr>
+
+                    <tr>
+                <td>Cough</td>
+                <td><input type="radio" name="cough" ng-model="fields.cough" ng-value="'Yes'" /> Yes <input type="radio" name="cough" ng-model="fields.cough" ng-value="'No'" /> No <input type="radio" name="cough" ng-model="fields.cough" ng-value="'Unk'" /> Unk</td>
+                <td>Rash</td>
+                <td><input type="radio" name="rash" ng-model="fields.rash" ng-value="'Yes'" /> Yes <input type="radio" name="rash" ng-model="fields.rash" ng-value="'No'" /> No <input type="radio" name="rash" ng-model="fields.rash" ng-value="'Unk'" /> Unk</td>
+                    </tr>
+
+                <tr>
+                <td>Sore Throat</td>
+                <td><input type="radio" name="sore_throat" ng-model="fields.sore_throat" ng-value="'Yes'" /> Yes <input type="radio" name="sore_throat" ng-model="fields.sore_throat" ng-value="'No'" /> No <input type="radio" name="sore_throat" ng-model="fields.sore_throat" ng-value="'Unk'" /> Unk</td>
+                <td>Fatigue</td>
+                <td><input type="radio" name="fatigue" ng-model="fields.fatigue" ng-value="'Yes'" /> Yes <input type="radio" name="fatigue" ng-model="fields.fatigue" ng-value="'No'" /> No <input type="radio" name="fatigue" ng-model="fields.fatigue" ng-value="'Unk'" /> Unk</td>
+                    </tr>
+                <tr>
+                <td>Muscle aches</td>
+                <td><input type="radio" name="muscle_aches" ng-model="fields.muscle_aches" ng-value="'Yes'" /> Yes <input type="radio" name="muscle_aches" ng-model="fields.muscle_aches" ng-value="'No'" /> No <input type="radio" name="muscle_aches" ng-model="fields.muscle_aches" ng-value="'Unk'" /> Unk</td>
+                <td>Seizures</td>
+                <td><input type="radio" name="seizures" ng-model="fields.seizures" ng-value="'Yes'" /> Yes <input type="radio" name="seizures" ng-model="fields.seizures" ng-value="'No'" /> No <input type="radio" name="seizures" ng-model="fields.seizures" ng-value="'Unk'" /> Unk</td>
+                    </tr>
+                <tr>
+                <td>Headache</td>
+                <td><input type="radio" name="headache" ng-model="fields.headache" ng-value="'Yes'" /> Yes <input type="radio" name="headache" ng-model="fields.headache" ng-value="'No'" /> No <input type="radio" name="headache" ng-model="fields.headache" ng-value="'Unk'" /> Unk</td>
+                <td>Other, specify</td>
+                <td><input type="radio" name="other" ng-model="fields.other" ng-value="'Yes'" /> Yes <input type="radio" name="other" ng-model="fields.other" ng-value="'No'" /> No <input type="radio" name="other" ng-model="fields.other" ng-value="'Unk'" /> Unk</td>
+                    </tr>
+            </tbody>
+          </table>
+
+<span>10. Does the patient still have symptoms?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="have_symptoms" ng-model="fields.have_symptoms" ng-value="'Yes'" /> Yes (skip to Q.12) <input type="radio" name="have_symptoms" ng-model="fields.have_symptoms" ng-value="'No'" /> No <input type="radio" name="have_symptoms" ng-model="fields.have_symptoms" ng-value="'Unk'" /> Unknown (skip to Q.12)</span><br>
+
+<span>11. When did the patient feel back to normal? <input type="date" ng-model="fields.back_normal_date"></span><br>
+
+<span>12. Did the patient receive any medical care for the illness?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="any_medical" ng-model="fields.any_medical" ng-value="'Yes'" /> Yes <input type="radio" name="any_medical" ng-model="fields.any_medical" ng-value="'No'" /> No (skip to Q.29) <input type="radio" name="any_medical" ng-model="fields.any_medical" ng-value="'Unk'" /> Unknown (skip to Q.29)</span><br>
+
+<span>13. Where and on what date did the patient seek care (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.seek_office" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.seek_office=='1'"/> Doctor’s office date: <input type="date" ng-model="fields.seek_office_date" /> <input type="checkbox" ng-model="fields.seek_room" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.seek_room=='1'"/> Emergency room date: <input type="date" ng-model="fields.seek_room_date" />
+<input type="checkbox" ng-model="fields.seek_clinic" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.seek_clinic=='1'"/> Urgent care clinic date: <input type="date" ng-model="fields.seek_clinic_date" /> <input type="checkbox" ng-model="fields.seek_department" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.seek_department=='1'"/> Health department date: <input type="date" ng-model="fields.seek_department_date" />
+<input type="checkbox" ng-model="fields.seek_other" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.seek_other=='1'"/> Other <input type="text" ng-model="fields.seek_other_text" /> date: <input type="date" ng-model="fields.seek_other_date" /> <input type="checkbox" ng-model="fields.seek_unknown" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.seek_unknown=='1'"/> Unknown <br>
+
+<span>14. Was the patient hospitalized for the illness?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="patient_hospitalized" ng-model="fields.patient_hospitalized" ng-value="'Yes'" /> Yes <input type="radio" name="patient_hospitalized" ng-model="fields.patient_hospitalized" ng-value="'No'" /> No (skip to Q.23) <input type="radio" name="patient_hospitalized" ng-model="fields.patient_hospitalized" ng-value="'Unk'" /> Unknown (skip to Q.23)</span><br>
+
+<span>15. Date(s) of hospital admission? First admission date: <input type="date" ng-model="fields.first_admission" /> Second admission date: <input type="date" ng-model="fields.second_admission" /></span><br>
+
+<span>16. Was the patient admitted to an intensive care unit (ICU)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="patient_admitted" ng-model="fields.patient_admitted" ng-value="'Yes'" /> Yes <input type="radio" name="patient_admitted" ng-model="fields.patient_admitted" ng-value="'No'" /> No (skip to Q.18) <input type="radio" name="patient_admitted" ng-model="fields.patient_admitted" ng-value="'Unk'" /> Unknown (skip to Q.18)</span><br>
+
+<span>17. Date of ICU admission: <input type="date" ng-model="fields.ic_admission" /> Date of ICU discharge: <input type="date" ng-model="fields.icu_discharge" /></span><br>
+
+<span>18. Did the patient receive mechanical ventilation / have a breathing tube?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="ventilation" ng-model="fields.ventilation" ng-value="'Yes'" /> Yes <input type="radio" name="ventilation" ng-model="fields.ventilation" ng-value="'No'" /> No (skip to Q.20) <input type="radio" name="ventilation" ng-model="fields.ventilation" ng-value="'Unk'" /> Unknown (skip to Q.20)</span><br>
+
+<span>19. For how many days did the patient receive mechanical ventilation or have a breathing tube? <input type="text" ng-model="fields.ventilation_days" />  days</span><br>
+
+<span>20. Was the patient discharged?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="discharged" ng-model="fields.discharged" ng-value="'Yes'" /> Yes <input type="radio" name="discharged" ng-model="fields.discharged" ng-value="'No'" /> No (skip to Q.23) <input type="radio" name="discharged" ng-model="fields.discharged" ng-value="'Unk'" /> Unknown (skip to Q.23)</span><br>
+
+<span>21. Date(s) of hospital discharge? First discharge date: <input type="date" ng-model="fields.first_discharge" />  Second discharge date: <input type="date" ng-model="fields.second_discharge" /> </span><br>
+
+<span>22. Where was the patient discharged?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="discharged_place" ng-model="fields.discharged_place" ng-value="'Home'" /> Home <input type="radio" name="discharged_place" ng-model="fields.discharged_place" ng-value="'Nursing'" /> Nursing facility/rehab <input type="radio" name="discharged_place" ng-model="fields.discharged_place" ng-value="'Hospice'" /> Hospice <input type="radio" name="discharged_place" ng-model="fields.discharged_place" ng-value="'Other'" /> Other <input type="text" ng-model="fields.discharged_place_other"/> <input type="radio" name="discharged_place" ng-model="fields.discharged_place" ng-value="'Unknown'" /> Unknown</span><br>
+
+<span>23. Did the patient have a new abnormality on chest x-ray or CAT scan?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="x_ray" ng-model="fields.x_ray" ng-value="'No'" /> No, x-ray or scan was normal <input type="radio" name="x_ray" ng-model="fields.x_ray" ng-value="'Yes'" /> Yes, x-ray or scan detected new abnormality <input type="radio" name="x_ray" ng-model="fields.x_ray" ng-value="'CAT'" /> No, chest x-ray or CAT scan not performed <input type="radio" name="x_ray" ng-model="fields.x_ray" ng-value="'Unknown'" /> Unknown</span><br>
+
+<span>24. Did the patient receive a diagnosis of pneumonia?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="pneumonia" ng-model="fields.pneumonia" ng-value="'Yes'" /> Yes <input type="radio" name="pneumonia" ng-model="fields.pneumonia" ng-value="'No'" /> No <input type="radio" name="pneumonia" ng-model="fields.pneumonia" ng-value="'Unk'" /> Unknown </span><br>
+
+<span>25. Did the patient receive a diagnosis of ARDS?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="ards" ng-model="fields.ards" ng-value="'Yes'" /> Yes <input type="radio" name="ards" ng-model="fields.ards" ng-value="'No'" /> No <input type="radio" name="ards" ng-model="fields.ards" ng-value="'Unk'" /> Unknown</span><br>
+
+<span>26. Did the patient have leukopenia (white blood cell count <5000 leukocytes/mm3) associated with this illness?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="leukopenia" ng-model="fields.leukopenia" ng-value="'Normal'" /> Normal <input type="radio" name="leukopenia" ng-model="fields.leukopenia" ng-value="'Abnormal'" /> Abnormal <input type="radio" name="leukopenia" ng-model="fields.leukopenia" ng-value="'Test'" /> Test not performed <input type="radio" name="leukopenia" ng-model="fields.leukopenia" ng-value="'Unknown'" /> Unknown </span><br>
+
+<span>27. Did the patient have lymphopenia (total lymphocytes <800/mm3 or lymphocytes <15% of WBC) associated with this illness?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="lymphopenia" ng-model="fields.lymphopenia" ng-value="'Normal'" /> Normal <input type="radio" name="lymphopenia" ng-model="fields.lymphopenia" ng-value="'Abnormal'" /> Abnormal <input type="radio" name="lymphopenia" ng-model="fields.lymphopenia" ng-value="'Test'" /> Test not performed <input type="radio" name="lymphopenia" ng-model="fields.lymphopenia" ng-value="'Unknown'" /> Unknown </span><br>
+
+<span>28. Did the patient have thrombocytopenia (total platelets <150,000/mm3) associated with this illness?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="thrombocytopenia" ng-model="fields.thrombocytopenia" ng-value="'Normal'" /> Normal <input type="radio" name="thrombocytopenia" ng-model="fields.thrombocytopenia" ng-value="'Abnormal'" /> Abnormal <input type="radio" name="thrombocytopenia" ng-model="fields.thrombocytopenia" ng-value="'Test'" /> Test not performed <input type="radio" name="thrombocytopenia" ng-model="fields.thrombocytopenia" ng-value="'Unknown'" /> Unknown </span><br>
+
+<span>29. Did the patient experience any other complications as a result of this illness? <input type="radio" name="other_complications" ng-model="fields.other_complications" ng-value="'Yes'" /> Yes (please describe below) <input type="radio" name="other_complications" ng-model="fields.other_complications" ng-value="'No'" /> No <input type="radio" name="other_complications" ng-model="fields.other_complications" ng-value="'Unknown'" /> Unknown </span><br>
+<textarea style="height: 155px;width: 850px;" ng-model="fields.other_complications_text"></textarea><br><br>
+<span>30. Did the patient receive influenza antiviral medications prior to becoming ill (within 2 weeks) or after becoming ill?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="antiviral_medications" ng-model="fields.antiviral_medications" ng-value="'Yes'" />  Yes (please describe below) <input type="radio" name="antiviral_medications" ng-model="fields.antiviral_medications" ng-value="'No'" /> No <input type="radio" name="antiviral_medications" ng-model="fields.antiviral_medications" ng-value="'Unknown'" /> Unknown </span><br>
+       <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>Drug</th>
+                <th>Start date (MM/DD/YYYY)</th>
+                <th>End date (MM/DD/YYYY)</th>
+                <th>Total number of days receiving antivirals</th>
+                <th>Dosage (if known)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Oseltamivir (Tamiflu)</td>
+                <td><input type="date" ng-model="fields.oseltamivir_start"></td>
+                <td><input type="date" ng-model="fields.oseltamivir_end"></td>
+                <td><input type="text" ng-model="fields.oseltamivir_nb"></td>
+                <td><input type="text" ng-model="fields.oseltamivir_dosage" style="width:80%;"> mg</td>
+              </tr>
+
+              <tr>
+                <td>Zanamivir (Relenza)</td>
+                <td><input type="date" ng-model="fields.zanamivir_start"></td>
+                <td><input type="date" ng-model="fields.zanamivir_end"></td>
+                <td><input type="text" ng-model="fields.zanamivir_nb"></td>
+                <td><input type="text" ng-model="fields.zanamivir_dosage" style="width:80%;"> mg</td>
+              </tr>
+
+              <tr>
+                <td>Other influenza antiviral <input type="text" ng-model="fields.other_influenza"</td>
+                <td><input type="date" ng-model="fields.other_influenza_start"></td>
+                <td><input type="date" ng-model="fields.other_influenza_end"></td>
+                <td><input type="text" ng-model="fields.other_influenza_nb"></td>
+                <td><input type="text" ng-model="fields.other_influenza_dosage" style="width:80%;"> mg</td>
+              </tr>
+
+            </tbody>
+          </table>
+<span>31. Did the patient die as a result of this illness?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="patient_die" ng-model="fields.patient_die" ng-value="'Yes'" /> Yes, <b>Date of death:</b> <input type="date" ng-model="fields.patient_die_date" > <input type="radio" name="patient_die" ng-model="fields.patient_die" ng-value="'No'" /> No <input type="radio" name="patient_die" ng-model="fields.patient_die" ng-value="'Unknown'" /> Unknown</span><br><br>
+
+<table border="2" width="100%">
+<tr>
+    <td colspan="5" style="background-color:white;color:black;">&nbsp;&nbsp;&nbsp;&nbsp;<b>Influenza Testing</b></td>
+</tr>
+</table><br>
+
+<span>32. When was the specimen collected that indicated novel influenza A virus infection by Reverse Transcription-Polymerase Chain Reaction (RTPCR)? <input type="date" ng-model="fields.virus_infection_date" > </span><br>
+
+<span>33. Where was the specimen collected? </span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="specimen_collected" ng-model="fields.specimen_collected" ng-value="'office'" /> Doctor’s office <input type="radio" name="specimen_collected" ng-model="fields.specimen_collected" ng-value="'Hospital'" /> Hospital <input type="radio" name="specimen_collected" ng-model="fields.specimen_collected" ng-value="'Emergency'" /> Emergency room <input type="radio" name="specimen_collected" ng-model="fields.specimen_collected" ng-value="'Urgent'" /> Urgent care clinic <input type="radio" name="specimen_collected" ng-model="fields.specimen_collected" ng-value="'department'" /> Health department <input type="radio" name="specimen_collected" ng-model="fields.specimen_collected" ng-value="'Other'" /> Other <input type="text" ng-model="fields.specimen_collected_other" > <input type="radio" name="specimen_collected" ng-model="fields.specimen_collected" ng-value="'Unknown'" /> Unknown</span><br>
+
+<span>34. Was a rapid influenza diagnostic test (RIDT) used on any respiratory specimens collected?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="influenza_diagnostic" ng-model="fields.influenza_diagnostic" ng-value="'Yes'" /> Yes <input type="radio" name="influenza_diagnostic" ng-model="fields.influenza_diagnostic" ng-value="'No'" /> No (skip to Q.38) <input type="radio" name="influenza_diagnostic" ng-model="fields.influenza_diagnostic" ng-value="'Unknown'" /> Unknown (skip to Q.38)</span><br>
+
+<span>35. When was the RIDT specimen collected? <input type="date" ng-model="fields.ridt_specimen_date" ></span><br>
+
+<span>36. What was the result? <input type="radio" name="the_result" ng-model="fields.the_result" ng-value="'InfA'" /> Influenza A <input type="radio" name="the_result" ng-model="fields.the_result" ng-value="'InfB'" /> Influenza B <input type="radio" name="the_result" ng-model="fields.the_result" ng-value="'InfAB'" /> Influenza A/B (type not distinguished) <input type="radio" name="the_result" ng-model="fields.the_result" ng-value="'Negative'" /> Negative <input type="radio" name="the_result" ng-model="fields.the_result" ng-value="'Other'" /> Other <input type="text" ng-model="fields.the_result_other" ></span><br>
+
+<span>37. What brand of RIDT was used? <input type="text" ng-model="fields.brand" ></span><br><br>
+
+<table border="2" width="100%">
+<tr>
+    <td colspan="5" style="background-color:white;color:black">&nbsp;&nbsp;&nbsp;&nbsp;<b>Medical History -- Past Medical History and Vaccination Status</b></td>
+</tr>
+</table>
+<br>
+
+<span>38. Does the patient have any of the following chronic medical conditions? Please specify ALL conditions that qualify.</span><br>
+<table class="table table-bordered">
+<tbody>
+  <tr>
+    <td>a. Asthma/reactive airway disease</td>
+    <td><input type="radio" name="reactive_airway" ng-model="fields.reactive_airway" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="reactive_airway" ng-model="fields.reactive_airway" ng-value="'No'" /> No</td>
+    <td colspan="2"><input type="radio" name="reactive_airway" ng-model="fields.reactive_airway" ng-value="'Unknown'" /> Unknown</td>
+  </tr>
+    <tr>
+    <td>b. Other chronic lung disease </td>
+    <td><input type="radio" name="chronic_lung" ng-model="fields.chronic_lung" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="chronic_lung" ng-model="fields.chronic_lung" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="chronic_lung" ng-model="fields.chronic_lung" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="fields.chronic_lung_specifychronic_heart"></td>
+  </tr>
+    <tr>
+    <td>c. Chronic heart or circulatory disease  </td>
+    <td><input type="radio" name="chronic_heart" ng-model="fields.chronic_heart" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="chronic_heart" ng-model="fields.chronic_heart" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="chronic_heart" ng-model="fields.chronic_heart" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="fields.chronic_heart_specify"></td>
+  </tr>
+    <tr>
+    <td>d. Diabetes mellitus </td>
+    <td><input type="radio" name="diabetes_mellitus" ng-model="fields.diabetes_mellitus" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="diabetes_mellitus" ng-model="fields.diabetes_mellitus" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="diabetes_mellitus" ng-model="fields.diabetes_mellitus" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="fields.diabetes_mellitus_specify"></td>
+  </tr>
+    <tr>
+    <td>e. Kidney or renal disease </td>
+    <td><input type="radio" name="renal_disease" ng-model="fields.renal_disease" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="renal_disease" ng-model="fields.renal_disease" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="renal_disease" ng-model="fields.renal_disease" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="fields.renal_disease_specify"></td>
+  </tr>
+    <tr>
+    <td>f. Non-cancer immunosuppressive condition </td>
+    <td><input type="radio" name="immunosuppressive_condition" ng-model="fields.immunosuppressive_condition" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="immunosuppressive_condition" ng-model="fields.immunosuppressive_condition" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="immunosuppressive_condition" ng-model="fields.immunosuppressive_condition" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="fields.immunosuppressive_condition_specify"></td>
+  </tr>
+    <tr>
+    <td>g. Cancer chemotherapy in past 12 months </td>
+    <td><input type="radio" name="chemotherapy" ng-model="fields.chemotherapy" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="chemotherapy" ng-model="fields.chemotherapy" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="chemotherapy" ng-model="fields.chemotherapy" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="chemotherapy_specify"></td>
+  </tr>
+      <tr>
+    <td>h. Neurologic/neurodevelopmental disorder </td>
+    <td><input type="radio" name="neurodevelopmental_disorder" ng-model="fields.neurodevelopmental_disorder" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="neurodevelopmental_disorder" ng-model="fields.neurodevelopmental_disorder" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="neurodevelopmental_disorder" ng-model="fields.neurodevelopmental_disorder" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="fields.neurodevelopmental_disorder_specify"></td>
+  </tr>
+      <tr>
+    <td>i. Other chronic diseases</td>
+    <td><input type="radio" name="chronic_diseases" ng-model="fields.chronic_diseases" ng-value="'Yes'" /> Yes</td>
+    <td><input type="radio" name="chronic_diseases" ng-model="fields.chronic_diseases" ng-value="'No'" /> No</td>
+    <td><input type="radio" name="chronic_diseases" ng-model="fields.chronic_diseases" ng-value="'Unknown'" /> Unknown</td>
+    <td>(If YES, specify) <input type="text" ng-model="fields.chronic_diseases_specify"></td>
+  </tr>
+</tbody>
+</table>
+
+<span>39. Does the patient frequently use a stroller or wheelchair? If yes, please describe.</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="patient_frequently" ng-model="fields.patient_frequently" ng-value="'Yes'" /> Yes <input type="text" ng-model="fields.patient_frequently_specify" /> <input type="radio" name="patient_frequently" ng-model="fields.patient_frequently" ng-value="'No'" /> No <input type="radio" name="patient_frequently" ng-model="fields.patient_frequently" ng-value="'Unknown'" /> Unknown</span><br>
+
+<span>40. Was patient pregnant or ≤6 weeks postpartum at illness onset?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="patient_pregnant" ng-model="fields.patient_pregnant" ng-value="'pregnant'" /> Yes, pregnant (weeks pregnant at onset) <input type="text" ng-model="fields.patient_pregnant_text" /> <input type="radio" name="patient_pregnant" ng-model="fields.patient_pregnant" ng-value="'postpartum'" /> Yes, postpartum (delivery date) <input type="date" ng-model="fields.patient_pregnant_date" /> <input type="radio" name="patient_pregnant" ng-model="fields.patient_pregnant" ng-value="'No'" /> No <input type="radio" name="patient_pregnant" ng-model="fields.patient_pregnant" ng-value="'Unknown'" /> Unknown</span><br>
+
+<span>41. Does the patient currently smoke?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="currently_smoke" ng-model="fields.currently_smoke" ng-value="'Yes'" /> Yes <input type="radio" name="currently_smoke" ng-model="fields.currently_smoke" ng-value="'No'" /> No <input type="radio" name="currently_smoke" ng-model="fields.currently_smoke" ng-value="'Unknown'" /> Unknown</span><br>
+
+<span>42. Was the patient vaccinated against influenza in the past year?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_vaccinated" ng-model="fields.patient_vaccinated" ng-value="'Yes'" /> Yes <input type="radio" name="patient_vaccinated" ng-model="fields.patient_vaccinated" ng-value="'No'" /> No (skip to Q.45) <input type="radio" name="patient_vaccinated" ng-model="fields.patient_vaccinated" ng-value="'Unknown'" /> Unknown (skip to Q.45)</span><br>
+
+<span>43. Month and year of influenza vaccination? <b>Vaccination date 1:</b><input type="date" ng-model="fields.influenza_vaccination_date1" /> <b>Vaccination date 2:</b><input type="date" ng-model="fields.influenza_vaccination_date2" /></span><br>
+
+<span>44. Type of influenza vaccine (check all that apply): <input type="checkbox" ng-model="fields.type_influenza_inactivated" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_influenza_inactivated=='1'"/> Inactivated (injection) <input type="checkbox" ng-model="fields.type_influenza_live_attenuated" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_influenza_live_attenuated=='1'"/> Live attenuated (nasal spray) <input type="checkbox" ng-model="fields.type_influenza_unknown" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_influenza_unknown=='1'"/> Unknown </span><br><br>
+
+<table border="2" width="100%">
+<tr>
+    <td colspan="5" style="background-color:white;color:black">&nbsp;&nbsp;&nbsp;&nbsp;<b>Epidemiologic Risk Factors</b></td>
+</tr>
+</table>
+<br>
+
+<span>45. In the 7 days prior to illness onset, did the patient travel outside of his/her usual area? <input type="radio" name="travel_outside" ng-model="fields.travel_outside" ng-value="'Yes'" /> Yes <input type="radio" name="travel_outside" ng-model="fields.travel_outside" ng-value="'No'" /> No (skip to Q.48) <input type="radio" name="travel_outside" ng-model="fields.travel_outside" ng-value="'Unknown'" /> Unknown (skip to Q.48) </span><br>
+
+<span>46. When and where did the patient travel? <b>Please describe details of the patient’s travel in the notes section at the end of the form.</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;Trip 1:</b> Dates of travel: <input type="date" ng-model="fields.patient_travel_trip1_date1" /> to <input type="date" ng-model="fields.patient_travel_trip1_date2" /> Country <input type="text" ng-model="fields.patient_travel_trip1_country" /> State <input type="text" ng-model="fields.patient_travel_trip1_state" /> <br>
+&nbsp;&nbsp;&nbsp;&nbsp; City/County <input type="text" ng-model="fields.patient_travel_trip1_city" /></span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<b>Trip 2:</b> Dates of travel: <input type="date" ng-model="fields.patient_travel_trip2_date1" /> to <input type="date" ng-model="fields.patient_travel_trip2_date2" /> Country <input type="text" ng-model="fields.patient_travel_trip2_country" /> State <input type="text" ng-model="fields.patient_travel_trip2_state" /> <br>
+&nbsp;&nbsp;&nbsp;&nbsp; City/County <input type="text" ng-model="fields.patient_travel_trip2_city" /></span><br>
+
+<span>47. Did the patient travel in a group (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.travel_group_alone" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.travel_group_alone=='1'"/> No, travelled alone <input type="checkbox" ng-model="fields.travel_group_household" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.travel_group_household=='1'"/> Yes, with household members <input type="checkbox" ng-model="fields.travel_group_non_household" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.travel_group_non_household=='1'"/> Yes, with non-household members <input type="checkbox" ng-model="fields.travel_group_unknown" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.travel_group_unknown=='1'"/> Unknown</span><br><br>
+
+<table border="2" width="100%">
+<tr>
+    <td colspan="5" style="background-color:white;color:black">&nbsp;&nbsp;&nbsp;&nbsp;<b>Risk Factors—Domestic and Agricultural Animals</b></td>
+</tr>
+</table>
+
+<span>48. In the 7 days before becoming ill, did the patient attend an agricultural fair/event or live animal market?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="live_animal" ng-model="fields.live_animal" ng-value="'Yes'" /> Yes (specify name, if >1 fair, please describe in the notes section <input type="text" ng-model="fields.live_animal_specify" />) <input type="radio" name="live_animal" ng-model="fields.live_animal" ng-value="'No'" /> No (skip to Q.50) <input type="radio" name="live_animal" ng-model="fields.live_animal" ng-value="'Unknown'" /> Unknown (skip to Q.50)</span><br>
+
+<span>49. In the 7 days before becoming ill, on what days did the patient attend an agricultural fair/event or live animal market (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.agricultural_fair_day" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_day=='1'"/> on the day of illness onset <input type="checkbox" ng-model="fields.agricultural_fair_1day" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_1day=='1'"/> 1 day before illness onset <input type="checkbox" ng-model="fields.agricultural_fair_2days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_2days=='1'"/> 2 days before illness onset <input type="checkbox" ng-model="fields.agricultural_fair_3days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_3days=='1'"/> 3 days before illness onset </span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.agricultural_fair_4days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_4days=='1'"/> 4 days of illness onset <input type="checkbox" ng-model="fields.agricultural_fair_5days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_5days=='1'"/> 5 days before illness onset <input type="checkbox" ng-model="fields.agricultural_fair_6days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_6days=='1'"/> 6 days before illness onset <input type="checkbox" ng-model="fields.agricultural_fair_7days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.agricultural_fair_7days=='1'"/> 7 days before illness onset </span><br>
+
+<span>50. In the 7 days before becoming ill, did the patient have <b>DIRECT</b> contact with (touch or handle) any livestock animals like poultry or pigs?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="livestock_animals" ng-model="fields.livestock_animals" ng-value="'Yes'" /> Yes (specify name, if >1 fair, please describe in the notes section <input type="text" ng-model="fields.livestock_animals_specify" />) <input type="radio" name="livestock_animals" ng-model="fields.livestock_animals" ng-value="'No'" /> No (skip to Q.53) <input type="radio" name="livestock_animals" ng-model="fields.livestock_animals" ng-value="'Unknown'" /> Unknown (skip to Q.53)</span><br>
+
+<span>51. What type(s) of animals did the patient have direct contact with (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.type_animals_horses" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_animals_horses=='1'"/> Horses <input type="checkbox" ng-model="fields.type_animals_cows" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_animals_cows=='1'"/> Cows <input type="checkbox" ng-model="fields.type_animals_poultry" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_animals_poultry=='1'"/> Poultry/wild birds <input type="checkbox" ng-model="fields.type_animals_sheep" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_animals_sheep=='1'"/> Sheep <input type="checkbox" ng-model="fields.type_animals_goats" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_animals_goats=='1'"/> Goats <input type="checkbox" ng-model="fields.type_animals_pigs" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_animals_pigs=='1'"/> Pigs/hogs <input type="checkbox" ng-model="fields.type_animals_others" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.type_animals_others=='1'"/> Other <input type="text" ng-model="fields.type_animals_others_text" /></span><br>
+
+<span>52. Where did the direct contact occur (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.direct_contact_home" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.direct_contact_home=='1'"/> Home <input type="checkbox" ng-model="fields.direct_contact_work" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.direct_contact_work=='1'"/> Work <input type="checkbox" ng-model="fields.direct_contact_event" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.direct_contact_event=='1'"/> Agricultural fair or event <input type="checkbox" ng-model="fields.direct_contact_market" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.direct_contact_market=='1'"/> Live animal market <input type="checkbox" ng-model="fields.direct_contact_zoo" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.direct_contact_zoo=='1'"/> Petting zoo <input type="checkbox" ng-model="fields.direct_contact_other" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.direct_contact_other=='1'"/> Other <input type="text" ng-model="fields.direct_contact_other_text" /></span><br>
+
+<span>53. In the 7 days before becoming ill, did the patient have <b>INDIRECT</b> contact with (walk through an area containing or come within 6 feet of) any livestock animals?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="indirect_contact" ng-model="fields.indirect_contact" ng-value="'Yes'" /> Yes <input type="radio" name="indirect_contact" ng-model="fields.indirect_contact" ng-value="'No'" /> No (skip to Q.56) <input type="radio" name="indirect_contact" ng-model="fields.indirect_contact" ng-value="'Unknown'" /> Unknown (skip to Q.56)</span><br>
+
+<span>54. What type(s) of animals did the patient have indirect contact with (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.indirect_contact_horses" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_horses=='1'"/> Horses <input type="checkbox" ng-model="fields.indirect_contact_cows" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_cows=='1'"/> Cows <input type="checkbox" ng-model="fields.indirect_contact_poultry" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_poultry=='1'"/> Poultry/wild birds <input type="checkbox" ng-model="fields.indirect_contact_sheep" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_sheep=='1'"/> Sheep <input type="checkbox" ng-model="fields.indirect_contact_goats" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_goats=='1'"/> Goats <input type="checkbox" ng-model="fields.indirect_contact_pigs" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_pigs=='1'"/> Pigs/hogs <input type="checkbox" ng-model="fields.indirect_contact_other" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_other=='1'"/> Other <input type="text" ng-model="fields.indirect_contact_other_text" /></span><br>
+
+<span>55. Where did the indirect contact occur (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.indirect_contact_home" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_home=='1'"/> Home <input type="checkbox" ng-model="fields.indirect_contact_work" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_work=='1'"/> Work <input type="checkbox" ng-model="fields.indirect_contact_event" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_event=='1'"/> Agricultural fair or event <input type="checkbox" ng-model="fields.indirect_contact_market" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_market=='1'"/> Live animal market <input type="checkbox" ng-model="fields.indirect_contact_zoo" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_zoo=='1'"/> Petting zoo <input type="checkbox" ng-model="fields.indirect_contact_other2" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.indirect_contact_other2=='1'"/> Other <input type="text" ng-model="fields.indirect_contact_other2_text" /></span><br>
+
+<span>56. In the 7 days before becoming ill, did the patient have direct or indirect contact with any animal exhibiting signs of illness?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="direct_indirect_contact" ng-model="fields.direct_indirect_contact" ng-value="'Yes'" /> Yes (specify animal type and location <input type="text" ng-model="fields.direct_indirect_contact_specify" />) <input type="radio" name="direct_indirect_contact" ng-model="fields.direct_indirect_contact" ng-value="'No'" /> No <input type="radio" name=" direct_indirect_contact" ng-model="fields.direct_indirect_contact" ng-value="'Unknown'" /> Unknown </span><br>
+
+<p style="color: blue;font-style: italic;font-size: 15px;"><b>Please answer Q.57–58 if ANY contact (direct, indirect, or both) with pigs/hogs identified above. If no contact identified, please skip to Q.59.</b></p>
+
+<span>57. In the 7 days before becoming ill, on what days did the patient have <b>ANY</b> contact (direct, indirect, or both) with pigs (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.any_contact" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact=='1'"/> on the day of illness onset <input type="checkbox" ng-model="fields.any_contact_1day" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact_1day=='1'"/> 1 day before illness onset <input type="checkbox" ng-model="fields.any_contact_2days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact_2days=='1'"/> 2 days before illness onset <input type="checkbox" ng-model="fields.any_contact_3days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact_3days=='1'"/> 3 days before illness onset </span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.any_contact_4days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact_4days=='1'"/> 4 days of illness onset <input type="checkbox" ng-model="fields.any_contact_5days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact_5days=='1'"/> 5 days before illness onset <input type="checkbox" ng-model="fields.any_contact_6days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact_6days=='1'"/> 6 days before illness onset <input type="checkbox" ng-model="fields.any_contact_7days" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.any_contact_7days=='1'"/> 7 days before illness onset </span><br>
+
+<span>58. From Q. 57, what was the total number of different days the patient reported <b>ANY</b> pig contact (direct, indirect, or both)? <input type="text" ng-model="fields.any_pig_contact" /> days</span><br>
+
+<span>59. Does anyone else in the household own, keep or care for livestock animals?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="household_own" ng-model="fields.household_own" ng-value="'Yes'" /> Yes <input type="radio" name="household_own" ng-model="fields.household_own" ng-value="'No'" /> No (skip to Q.61) <input type="radio" name="household_own" ng-model="fields.household_own" ng-value="'Unknown'" /> Unknown (skip to Q.61)</span><br>
+
+<span>60. What type(s) of animals are kept or cared for by household members (check all that apply)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" ng-model="fields.animals_kept_horses" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.animals_kept_horses=='1'"/> Horses <input type="checkbox" ng-model="fields.animals_kept_cows" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.animals_kept_cows=='1'"/> Cows <input type="checkbox" ng-model="fields.animals_kept_poultry" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.animals_kept_poultry=='1'"/> Poultry/wild birds <input type="checkbox" ng-model="fields.animals_kept_sheep" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.animals_kept_sheep=='1'"/> Sheep <input type="checkbox" ng-model="fields.animals_kept_goats" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.animals_kept_goats=='1'"/> Goats <input type="checkbox" ng-model="fields.animals_kept_pigs" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.animals_kept_pigs=='1'"/> Pigs/hogs <input type="checkbox" ng-model="fields.animals_kept_other" ng-true-value="'1'" ng-false-value="'0'" ng-checked="fields.animals_kept_other=='1'"/> Other <input type="text" ng-model="fields.animals_kept_other_text" /></span><br><br>
+
+<table border="2" width="100%">
+<tr>
+    <td colspan="5" style="background-color:white;color:black">&nbsp;&nbsp;&nbsp;&nbsp;<b>Risk Factors—Household, Occupational, Nosocomial, and Secondary Spread</b></td>
+</tr>
+</table>
+
+<span>61. Does the patient reside in an institutional or group setting (e.g. nursing home, boarding school, college dormitory)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_reside" ng-model="fields.patient_reside" ng-value="'Yes'" /> Yes (skip to Q.63) <input type="radio" name="patient_reside" ng-model="fields.patient_reside" ng-value="'No'" /> No <input type="radio" name="patient_reside" ng-model="fields.patient_reside" ng-value="'Unknown'" /> Unknown (skip to Q.63)</span><br>
+
+<span>62. How many people resided in the patient’s household(s) in the week before or after illness onset (excluding the patient)? <input type="text" ng-model="fields.people_resided" /></span><br>
+
+<span><b>A household member is anyone with at least one overnight stay in the week before or after the patient’s illness onset, and the patient</b><br>
+<b>may have resided in >1 household during this period. Please complete the table below for each household member.</b></span><br>
+<p>Table here</p>
+
+<span>63. In the 7 days before or after becoming ill, did the patient attend or work at a child care facility?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_attend" ng-model="fields.patient_attend" ng-value="'Yes'" /> Yes (before becoming ill) <input type="radio" name="patient_attend" ng-model="fields.patient_attend" ng-value="'Yes'" /> Yes (after becoming ill) <input type="text" ng-model="fields.patient_attend_specify" /> <input type="radio" name="patient_attend" ng-model="fields.patient_attend" ng-value="'No'" /> No (skip to Q.65) <input type="radio" name="patient_attend" ng-model="fields.patient_attend" ng-value="'Unknown'" /> Unknown (skip to Q.65)</span><br>
+
+<span>64. Approximately how many children are in the patient’s class or room at the child care facility? <input type="text" ng-model="fields.patient_class" /></span><br>
+
+<span>65. In the 7 days before or after becoming ill, did the patient attend or work at a school?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_school" ng-model="fields.patient_school" ng-value="'YesB'" /> Yes (before becoming ill) <input type="radio" name="patient_school" ng-model="fields.patient_school" ng-value="'YesA'" /> Yes (after becoming ill) <input type="text" ng-model="fields.patient_school_specify" /> <input type="radio" name="patient_school" ng-model="fields.patient_school" ng-value="'No'" /> No (skip to Q.67) <input type="radio" name="patient_school" ng-model="fields.patient_school" ng-value="'Unknown'" /> Unknown (skip to Q.67)</span><br>
+
+<span>66. Approximately how many students are in the patient’s class at the school? <input type="text" ng-model="fields.patient_school_children" /> children </span><br>
+
+<span>67. In the 7 days before or after the patient became ill, did anyone else in the patient’s household(s) work at or attend a child care facility or school?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_ill" ng-model="fields.patient_ill" ng-value="'Yes'" /> Yes <input type="radio" name="patient_ill" ng-model="fields.patient_ill" ng-value="'No'" /> No (skip to Q.69) <input type="radio" name="patient_ill" ng-model="fields.patient_ill" ng-value="'Unknown'" /> Unknown (skip to Q.69)</span><br>
+
+<span>68. List ID numbers from Q.62 (the table above) for household members working at or attending a child care facility or school: <input type="text" ng-model="fields.members_working" /></span><br>
+
+<span>69. Does the patient handle samples (animal or human) suspected of containing influenza virus in a laboratory or other setting?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_handle" ng-model="fields.patient_handle" ng-value="'Yes'" /> Yes <input type="radio" name="patient_handle" ng-model="fields.patient_handle" ng-value="'No'" /> No <input type="radio" name="patient_handle" ng-model="fields.patient_handle" ng-value="'Unknown'" /> Unknown</span><br>
+
+<span>70. In the 7 days before or after becoming ill, did the patient work in or volunteer at a healthcare facility or setting?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_volunteer" ng-model="fields.patient_volunteer" ng-value="'Yes'" /> Yes <input type="radio" name="patient_volunteer" ng-model="fields.patient_volunteer" ng-value="'No'" /> No (skip to Q.73)<input type="radio" name="patient_volunteer" ng-model="fields.patient_volunteer" ng-value="'Unknown'" /> Unknown (skip to Q.73)</span><br>
+
+<span>71. Specify healthcare facility job/role:</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'Physician'" /> Physician <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'Nurse'" /> Nurse <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'Administration'" /> Administration <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'staff'" /> staff <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'Housekeeping'" /> Housekeeping <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'Patient'" /> Patient transport <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'Volunteer'" /> Volunteer <input type="radio" name="facility_job" ng-model="fields.facility_job" ng-value="'other'" /> Other <input type="text" ng-model="fields.facility_job_other"/></span><br>
+
+<span>72. Did the patient have direct patient contact while working or volunteering at a healthcare facility?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="contact_working" ng-model="fields.contact_working" ng-value="'Yes'" /> Yes <input type="radio" name="contact_working" ng-model="fields.contact_working" ng-value="'No'" /> No <input type="radio" name="contact_working" ng-model="fields.contact_working" ng-value="'Unknown'" /> Unknown </span><br>
+
+<span>73. In the 7 days before becoming ill, was the patient in a hospital for any reason (i.e., visiting, working, or for treatment)?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_hospital" ng-model="fields.patient_hospital" ng-value="'Yes'" /> Yes <input type="radio" name="patient_hospital" ng-model="fields.patient_hospital" ng-value="'No'" /> No <input type="radio" name="patient_hospital" ng-model="fields.patient_hospital" ng-value="'Unknown'" /> Unknown </span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;If yes, what were the dates? <input type="date" ng-model="fields.patient_hospital_date1" /> , <input type="date" ng-model="fields.patient_hospital_date2" /> City/Town <input type="text" ng-model="fields.patient_hospital_city"/></span><br>
+
+<span>74. In the 7 days before becoming ill, was the patient in a clinic or a doctor’s office for any reason?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_clinic" ng-model="fields.patient_clinic" ng-value="'Yes'" /> Yes <input type="radio" name="patient_clinic" ng-model="fields.patient_clinic" ng-value="'No'" /> No <input type="radio" name="patient_clinic" ng-model="fields.patient_clinic" ng-value="'Unknown'" /> Unknown </span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp;If yes, what were the dates? <input type="date" ng-model="fields.patient_clinic_date1" /> , <input type="date" ng-model="fields.patient_clinic_date2" /> City/Town <input type="text" ng-model="fields.patient_clinic_city"/></span><br>
+
+<span>75. In the 7 days before becoming ill, did the patient have close contact (e.g. caring for, speaking with, or touching) with anyone other than a household member who routinely has contact with pigs/hogs?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="close_contact" ng-model="fields.close_contact" ng-value="'Yes'" /> Yes <input type="radio" name="close_contact" ng-model="fields.close_contact" ng-value="'No'" /> No <input type="radio" name="close_contact" ng-model="fields.close_contact" ng-value="'Unknown'" /> Unknown </span><br>
+
+<span>76. Does the patient know anyone <b>other than a household member</b> who had fever, respiratory symptoms like cough or sore throat, or another respiratory illness like pneumonia <b>in the 7 days BEFORE</b> the case patient’s illness onset?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="before_household" ng-model="fields.before_household" ng-value="'Yes'" /> Yes <b>(please list those ill before the case patient in the table below)</b> <input type="radio" name="before_household" ng-model="fields.before_household" ng-value="'No'" /> No <input type="radio" name="before_household" ng-model="fields.before_household" ng-value="'Unknown'" /> Unknown </span><br><br>
+
+    <table class="table table-bordered">
+    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#HouseholdBeforeModal"><span class="glyphicon glyphicon-plus"></span></button>
+    <tr>
+        <th>Relationship to patient</th>
+        <th>Sex(M/F)</th>
+        <th>Age</th>
+        <th>Date of illness onset</th>
+        <th>Any pig/hog contact or fair attendance ≤7 days before his/her onset?</th>
+        <th>Comments</th>
+    </tr>
+    <tr>
+        <tr ng-repeat="household_b in households_before">
+            <td><input type="text" ng-model="household_b.relationship" style="width:150px;"></td>
+            <td><input type="text" ng-model="household_b.sex" style="width:100px;"></td>
+            <td><input type="text" ng-model="household_b.age" style="width:100px;"></td>
+            <td><input type="date" ng-model="household_b.date" style="width:150px;"></td>
+            <td style="text-align:center;"><input type="radio" name="household_b{{household_b.id}}" ng-model="household_b.any_contact" ng-value="'Y'" /> Y <input type="radio" name="household_b{{household_b.id}}" ng-model="household_b.any_contact" ng-value="'N'" /> N <input type="radio" name="household_b{{household_b.id}}" ng-model="household_b.any_contact" ng-value="'U'" /> U</td>
+            <td><input type="text" ng-model="household_b.comments" style="width:280px;"></td>
+            <td><button type="button" ng-click="newBefore(household_b)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+            <td><button type="button" ng-click="deleteBefore(household_b)"><span class="glyphicon glyphicon-trash"></span></button></td> 
+        </tr>
+    </tr>
+</table>
+
+<span>77. Does the patient know anyone <b>other than a household member</b> who had fever, respiratory symptoms like cough or sore throat, or another respiratory illness like pneumonia <b>beginning AFTER</b> the case patient’s illness onset?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="after_household" ng-model="fields.after_household" ng-value="'Yes'" /> Yes <b>(please list those ill before the case patient in the table below)</b> <input type="radio" name="after_household" ng-model="fields.after_household" ng-value="'No'" /> No <input type="radio" name="after_household" ng-model="fields.after_household" ng-value="'Unknown'" /> Unknown </span><br><br>
+
+    <table class="table table-bordered">
+    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#HouseholdAfterModal"><span class="glyphicon glyphicon-plus"></span></button>
+    <tr>
+        <th>Relationship to patient</th>
+        <th>Sex(M/F)</th>
+        <th>Age</th>
+        <th>Date of illness onset</th>
+        <th>Any pig/hog contact or fair attendance ≤7 days before his/her onset?</th>
+        <th>Comments</th>
+    </tr>
+    <tr>
+        <tr ng-repeat="household_a in households_after">
+            <td><input type="text" ng-model="household_a.relationship" style="width:150px;"></td>
+            <td><input type="text" ng-model="household_a.sex" style="width:100px;"></td>
+            <td><input type="text" ng-model="household_a.age" style="width:100px;"></td>
+            <td><input type="date" ng-model="household_a.date" style="width:150px;"></td>
+            <td style="text-align:center;"><input type="radio" name="household_a{{household_a.id}}" ng-model="household_a.any_contact" ng-value="'Y'" /> Y <input type="radio" name="household_a{{household_a.id}}" ng-model="household_a.any_contact" ng-value="'N'" /> N <input type="radio" name="household_a{{household_a.id}}" ng-model="household_a.any_contact" ng-value="'U'" /> U</td>
+            <td><input type="text" ng-model="household_a.comments" style="width:280px;"></td>
+            <td><button type="button" ng-click="newAfter(household_a)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+            <td><button type="button" ng-click="deleteAfter(household_a)"><span class="glyphicon glyphicon-trash"></span></button></td> 
+        </tr>
+    </tr>
+</table>
+
+<span>78. Is the patient a contact of a confirmed or probable case of novel influenza A infection?</span><br>
+<span>&nbsp;&nbsp;&nbsp;&nbsp; <input type="radio" name="patient_confirmed" ng-model="fields.patient_confirmed" ng-value="'Yes'" /> Yes <b>(please list those ill before the case patient in the table below)</b> <input type="radio" name="patient_confirmed" ng-model="fields.patient_confirmed" ng-value="'No'" /> No <input type="radio" name="patient_confirmed" ng-model="fields.patient_confirmed" ng-value="'Unknown'" /> Unknown </span><br><br>
+
+    <table class="table table-bordered">
+    <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#PatientContactModal"><span class="glyphicon glyphicon-plus"></span></button>
+    <tr>
+        <th>Relationship to patient</th>
+        <th>State Epi ID</th>
+        <th>State Lab ID</th>
+        <th>Case status</th>
+        <th>Sex (M/F)</th>
+        <th>Age</th>
+        <th>Date of illness onset</th>
+    </tr>
+    <tr>
+        <tr ng-repeat="infection in influenza_infection">
+            <td><input type="text" ng-model="infection.relationship" style="width:150px;"></td>
+            <td><input type="text" ng-model="infection.epi_id" style="width:100px;"></td>
+            <td><input type="text" ng-model="infection.lab_id" style="width:100px;"></td>
+            <td style="text-align:center;"><input type="radio" name="{{infection.id}}" ng-model="infection.status" ng-value="'Confirmed'" /> Confirmed <input type="radio" name="infection{{infection.id}}" ng-model="infection.status" ng-value="'Probable'" /> Probable </td>
+            <td><input type="text" ng-model="infection.sex" style="width:100px;"></td>
+            <td><input type="text" ng-model="infection.age" style="width:100px;"></td>
+            <td><input type="date" ng-model="infection.date" style="width:150px;"></td>
+            <td><button type="button" ng-click="newInfection(infection)"><span class="glyphicon glyphicon-pencil"></span></button></td>
+            <td><button type="button" ng-click="deleteInfection(infection)"><span class="glyphicon glyphicon-trash"></span></button></td> 
+        </tr>
+    </tr>
+</table>
+
+<span>79. Any additional comments or notes (e.g. travel details, names/dates of fairs attended by case patient, dates of household members fair attendance
+and location of fair, information about other ill contacts)?</span><br>
+<textarea style="height:300px;width:1130px;" ng-model="fields.additional_comments"></textarea>
+<br><br><br>
+
+    <div class="row" style="float:right;">
+    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="submit(fields)">Register</button>
+    </div>
+<br><br><br>
+<center>
+<b>This is the end of the case report form. Thank you very much for your time.
+Please fax completed forms to 1.888.232.1322
+If you have any questions please feel free to contact the Epidemiology and Prevention Branch at 404.639.3747.</b>
+</center>
+
+</div>
+
+<!-- Modal Household Before-->
+<div id="HouseholdBeforeModal" class="modal fade" role="dialog" style="margin-left: -35%;">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 180%;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD NEW</h4>
+      </div>
+      <div class="modal-body">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Relationship to patient</th>
+                    <th>Sex(M/F)</th>
+                    <th>Age</th>
+                    <th>Date of illness onset</th>
+                    <th>Any pig/hog contact or fair attendance ≤7 days before his/her onset?</th>
+                    <th>Comments</th>
+                </tr>
+                <tr>
+                    <tr>
+                    <td><input type="text" ng-model="household_b.relationship" style="width:150px;"></td>
+                    <td><input type="text" ng-model="household_b.sex" style="width:100px;"></td>
+                    <td><input type="text" ng-model="household_b.age" style="width:100px;"></td>
+                    <td><input type="date" ng-model="household_b.date" style="width:150px;"></td>
+                    <td style="text-align:center;"><input type="radio" name="any_contactb" ng-model="household_b.any_contact" ng-value="'Y'" /> Y <input type="radio" name="any_contactb" ng-model="household_b.any_contact" ng-value="'N'" /> N <input type="radio" name="any_contactb" ng-model="household_b.any_contact" ng-value="'U'" /> U</td>
+                    <td><input type="text" ng-model="household_b.comments" style="width:280px;"></td>
+                    </tr>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="newBefore(household_b)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Household After-->
+<div id="HouseholdAfterModal" class="modal fade" role="dialog" style="margin-left: -35%;">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 180%;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD NEW</h4>
+      </div>
+      <div class="modal-body">
+            <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Relationship to patient</th>
+                    <th>Sex(M/F)</th>
+                    <th>Age</th>
+                    <th>Date of illness onset</th>
+                    <th>Any pig/hog contact or fair attendance ≤7 days before his/her onset?</th>
+                    <th>Comments</th>
+                </tr>
+                <tr>
+                    <tr>
+                    <td><input type="text" ng-model="household_a.relationship" style="width:150px;"></td>
+                    <td><input type="text" ng-model="household_a.sex" style="width:100px;"></td>
+                    <td><input type="text" ng-model="household_a.age" style="width:100px;"></td>
+                    <td><input type="date" ng-model="household_a.date" style="width:150px;"></td>
+                    <td style="text-align:center;"><input type="radio" name="any_contacta" ng-model="household_a.any_contact" ng-value="'Y'" /> Y <input type="radio" name="any_contacta" ng-model="household_a.any_contact" ng-value="'N'" /> N <input type="radio" name="any_contacta" ng-model="household_a.any_contact" ng-value="'U'" /> U</td>
+                    <td><input type="text" ng-model="household_a.comments" style="width:280px;"></td>
+                    </tr>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="newAfter(household_a)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Patient Contact-->
+<div id="PatientContactModal" class="modal fade" role="dialog" style="margin-left: -35%;">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content" style="width: 180%;">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">ADD NEW</h4>
+      </div>
+      <div class="modal-body">
+            <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th>Relationship to patient</th>
+                <th>State Epi ID</th>
+                <th>State Lab ID</th>
+                <th>Case status</th>
+                <th>Sex (M/F)</th>
+                <th>Age</th>
+                <th>Date of illness onset</th>
+            </tr>
+            <tr>
+                <tr>
+                <td><input type="text" ng-model="infection.relationship" style="width:150px;"></td>
+                <td><input type="text" ng-model="infection.epi_id" style="width:100px;"></td>
+                <td><input type="text" ng-model="infection.lab_id" style="width:100px;"></td>
+                <td style="text-align:center;"><input type="radio" name="status" ng-model="infection.status" ng-value="'Confirmed'" /> Confirmed <input type="radio" name="status" ng-model="infection.status" ng-value="'Probable'" /> Probable </td>
+                <td><input type="text" ng-model="infection.sex" style="width:100px;"></td>
+                <td><input type="text" ng-model="infection.age" style="width:100px;"></td>
+                <td><input type="date" ng-model="infection.date" style="width:150px;"></td>
+                </tr>
+            </tr>
+            </tbody>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-success" data-dismiss="modal" ng-click="newInfection(infection)">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>

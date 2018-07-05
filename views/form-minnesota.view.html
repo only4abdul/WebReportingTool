@@ -1,0 +1,112 @@
+<div class="container">
+<center><img src="images/Minnesota.png" style="float:left;">
+<p><b>Minnesota Department of Health - Disease Report Card</b></p>
+<p>625 Robert St. N., PO Box 64975, St. Paul, MN 55164-0975 www.health.state.mn.us</p>
+<p>Cases may be reported by phone: (651) 201-5414 or 1-877-676-5414 or by FAX: (651) 201-5743</p>
+</center>
+    <table id="example" class="table table-striped table-bordered nowrap" cellspacing="0" width="100%">
+            <tr>
+                <td colspan="2">Patient Name: <span><b>(last)</b> {{patient.last_name}} </span> <span style="margin-left:50%"><b>(first)</b> {{patient.first_name}}</span></td>
+            <td>Medical record number: <input  type="text" ng-model="fields.medical_record_number" value="{{fields.medical_record_number}}" /></td>
+            </tr>
+            <tr>
+                <td rowspan="2">Phone: h. {{patient.phone}} <br>w. {{patient.phone_work}}</td>
+                <td>Date of birth: {{patient.date_of_birth}} </td>
+                <td rowspan="2">Disease: <br>  <textarea style="width: 370px;height: 80px;" ng-model="fields.disease" value="{{fields.disease}}"></textarea>  
+                    <span style=float:right>Statut <br>
+                    <input type="radio" name="status" ng-model="fields.status" ng-value="'Case'" /> Case <br>
+                    <input type="radio" name="status" ng-model="fields.status" ng-value="'Suspected case'" /> Suspected case <br>
+                    <input type="radio" name="status" ng-model="fields.status" ng-value="'Asympt. carrier'"  /> Asympt. carrier   
+                    </span>         
+                </td>
+            </tr>
+            <tr>
+                <td>Gender: {{patient.sex}}</td>
+            </tr>
+            <tr>
+                <td colspan="2">Address: {{patient.address}}</td>
+                <td colspan="2">Date of onset: <input  type="date" ng-model="fields.date_of_onset" /> <br>   Date reported to MDH:  <input  type="date" ng-model="fields.date_reported_to_MDH" /></td>
+            
+            
+            </tr>
+            <tr><td>City: {{patient.city}}</td>
+            <td rowspan="4">Race <br>
+            <ul>
+            <li ng-repeat="race in races">{{race.race}}</li>
+            </ul>
+            </td>
+            <td>  Lab findings: <input  type="text" ng-model="fields.lab_findings" /> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Source: <input  type="text" ng-model="fields.source" /></td>
+            </tr>
+            <tr>
+                <td><span>State: {{patient.state}} </span><span style="margin-left:10%">Zip: {{patient.zip}}</span></td>
+                <td>Specimen collection date: <input  type="date" ng-model="fields.specimen_collection_date" /> <br> Date of result: <input type="date" ng-model="fields.date_of_result" /> </td>
+            </tr>
+            <tr>
+                <td>Country: {{patient.country}}</td>
+                <td>Lab facility: <input  type="text" ng-model="fields.lab_facility" />&nbsp;&nbsp;Phone: <input  type="text" placeholder="(     )    -" ng-model="fields.lab_facility_phone" /></td>
+            </tr>
+            <tr>
+                <td>Occupation: {{patient.occupation}}</td>
+                <td>Physician: <input  type="text" ng-model="fields.physician" /> Phone: <input  type="text" placeholder="(     )    -" ng-model="fields.physician_phone" /></td>
+            </tr>
+            <tr>
+            <td>Place of work, school, or daycare: {{patient.place_work}}<br></td>
+            <td>Ethnicity: {{patient.ethnicity}} </td>
+            <td>Person reporting: <input  type="text" ng-model="fields.person_reporting" /> Phone: <input  type="text" placeholder="(     )    -" ng-model="fields.person_reporting_phone" /></td>
+                
+        </tr>
+
+<tr>
+    
+        <td colspan="2">
+        <div   classe="col-md-8" ><p>(Circle one)</p>
+                <p><label class="radio-inline"><input type="radio" name="R1" ng-value="'Y'" ng-model="fields.patient_hospitalized">Y</label>
+                   <label class="radio-inline"><input type="radio" name="R1" ng-value="'N'" ng-model="fields.patient_hospitalized">N</label>
+                    <label class="radio-inline"><input type="radio" name="R1" ng-value="'U'" ng-model="fields.patient_hospitalized">U</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Patient was hospitalized. Where &nbsp;&nbsp;<input  type="text" ng-model="fields.patient_hospitalized_where"/></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;If yes, admission date: <input  type="date" ng-model="fields.admission_date"/></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discharge date: <input  type="date" ng-model="fields.discharge_date"/></p>
+                <p><label class="radio-inline"><input type="radio" name="R2" ng-value="'Y'" ng-model="fields.patient_died">Y</label>
+                   <label class="radio-inline"><input type="radio" name="R2" ng-value="'N'" ng-model="fields.patient_died">N</label>
+                   <label class="radio-inline"><input type="radio" name="R2" ng-value="'U'" ng-model="fields.patient_died">U</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Patient died as a result of this illness.</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;If yes, date: <input  type="date" ng-model="fields.patient_died_date"/> </p>
+                <p><label class="radio-inline"><input type="radio" name="R3" ng-value="'Y'" ng-model="fields.patient_foodhandler">Y</label>
+                   <label class="radio-inline"><input type="radio" name="R3" ng-value="'N'" ng-model="fields.patient_foodhandler">N</label>
+                   <label class="radio-inline"><input type="radio" name="R3" ng-value="'U'" ng-model="fields.patient_foodhandler">U</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Patient is a foodhandler. </p>
+                <p><label class="radio-inline"><input type="radio" name="R4" ng-value="'Y'" ng-model="fields.patient_contact">Y</label>
+                   <label class="radio-inline"><input type="radio" name="R4" ng-value="'N'" ng-model="fields.patient_contact">N</label>
+                   <label class="radio-inline"><input type="radio" name="R4" ng-value="'U'" ng-model="fields.patient_contact">U</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Patient has contact with children in daycare.</p>
+                <p><label class="radio-inline"><input type="radio" name="R5" ng-value="'Y'" ng-model="fields.pregnant">Y</label>
+                   <label class="radio-inline"><input type="radio" name="R5" ng-value="'N'" ng-model="fields.pregnant">N</label>
+                   <label class="radio-inline"><input type="radio" name="R5" ng-value="'U'" ng-model="fields.pregnant">U</label>
+                    &nbsp;&nbsp;&nbsp;&nbsp;Pregnant? (esp. for Hep B, HIV)</p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;If yes, due date: <input  type="date" ng-model="fields.due_date"/></p>
+                <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;delivery hospital: <input type="text" ng-model="fields.delivery_hospital"/></p>
+        </div>
+                
+        </td>
+    <td style="background-color:gray;">    <div classe="col-md-4" ><p>For office use only:</p>
+                    <p>  CDCDEF: ___________________</p>
+                    <p>   ID: ___________________</p>
+                    <p>   Rev: 8/2009
+                    <p>  HE-01553-03 140-0093</p>
+
+                </div>
+  
+        </td>
+</tr>
+
+</table> 
+<div class="row">
+<div>
+    <button class="btn btn-success" ng-click="downloadXML()">Generate and Send XML file</button>
+</div>
+<div style="float:right;"> 
+    <button class="btn btn-danger" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="submit(fields)">Register</button>
+</div>
+</div>
+</div>

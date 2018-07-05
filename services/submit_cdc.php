@@ -1,0 +1,1260 @@
+<?php
+header("Access-Control-Allow-Origin: *");
+header('Content-type: application/json');
+require_once('connect.php');
+
+$fields=$_GET['fields'];
+$form = (array) json_decode($fields);
+
+
+if(isset($form['state'])){ 
+	$state=$form['state'];
+}else{
+	$state='';
+}
+if(isset($form['date_reported'])){
+	$date_reported=$form['date_reported'];
+}else{
+	$date_reported='';
+}
+if(isset($form['date_interview'])){ 
+	$date_interview=$form['date_interview'];
+}else{
+	$date_interview='';
+}
+if(isset($form['state_epi'])){ 
+	$state_epi=$form['state_epi'];
+}else{
+	$state_epi='';
+}
+if(isset($form['state_lab'])){
+	$state_lab=$form['state_lab'];
+}else{
+	$state_lab='';
+}
+if(isset($form['household_id'])){ 
+	$household_id=$form['household_id'];
+}else{
+	$household_id='';
+}
+if(isset($form['cdc_id'])){
+	$cdc_id=$form['cdc_id'];
+}else{
+	$cdc_id='';
+}
+if(isset($form['cluster_id'])){
+	$cluster_id=$form['cluster_id'];
+}else{
+	$cluster_id='';
+}
+if(isset($form['time_report'])){
+	$time_report=$form['time_report'];
+}else{
+	$time_report='';
+}
+if(isset($form['subtype'])){
+	$subtype=$form['subtype'];
+}else{
+	$subtype='';
+}
+if(isset($form['subtype_other'])){
+	$subtype_other=$form['subtype_other'];
+}else{
+	$subtype_other='';
+}
+if(isset($form['date_symptoms'])){
+	$date_symptoms=$form['date_symptoms'];
+}else{
+	$date_symptoms='';
+}
+if(isset($form['fever'])){
+	$fever=$form['fever'];
+}else{
+	$fever='';
+}
+if(isset($form['fever_date'])){
+	$fever_date=$form['fever_date'];
+}else{
+	$fever_date='';
+}
+if(isset($form['felt_feverish'])){
+	$felt_feverish=$form['felt_feverish'];
+}else{
+	$felt_feverish='';
+}
+if(isset($form['felt_feverish_date'])){
+	$felt_feverish_date=$form['felt_feverish_date'];
+}else{
+	$felt_feverish_date='';
+}
+if(isset($form['cough'])){
+	$cough=$form['cough'];
+}else{
+	$cough='';
+}
+if(isset($form['sore_throat'])){
+	$sore_throat=$form['sore_throat'];
+}else{
+	$sore_throat='';
+}
+if(isset($form['muscle_aches'])){
+	$muscle_aches=$form['muscle_aches'];
+}else{
+	$muscle_aches='';
+}
+if(isset($form['headache'])){
+	$headache=$form['headache'];
+}else{
+	$headache='';
+}
+if(isset($form['shortness_breath'])){
+	$shortness_breath=$form['shortness_breath'];
+}else{
+	$shortness_breath='';
+}
+if(isset($form['vomiting'])){
+	$vomiting=$form['vomiting'];
+}else{
+	$vomiting='';
+}
+if(isset($form['diarrhea'])){
+	$diarrhea=$form['diarrhea'];
+}else{
+	$diarrhea='';
+}
+if(isset($form['eye_infection'])){
+	$eye_infection=$form['eye_infection'];
+}else{
+	$eye_infection='';
+}
+if(isset($form['rash'])){
+	$rash=$form['rash'];
+}else{
+	$rash='';
+}
+if(isset($form['fatigue'])){
+	$fatigue=$form['fatigue'];
+}else{
+	$fatigue='';
+}
+if(isset($form['seizures'])){
+	$seizures=$form['seizures'];
+}else{
+	$seizures='';
+}
+if(isset($form['other'])){
+	$other=$form['other'];
+}else{
+	$other='';
+}
+if(isset($form['have_symptoms'])){
+	$have_symptoms=$form['have_symptoms'];
+}else{
+	$have_symptoms='';
+}
+if(isset($form['back_normal_date'])){
+	$back_normal_date=$form['back_normal_date'];
+}else{
+	$back_normal_date='';
+}
+if(isset($form['any_medical'])){
+	$any_medical=$form['any_medical'];
+}else{
+	$any_medical='';
+}
+if(isset($form['seek_office'])){
+	$seek_office=$form['seek_office'];
+}else{
+	$seek_office='';
+}
+if(isset($form['seek_office_date'])){
+	$seek_office_date=$form['seek_office_date'];
+}else{
+	$seek_office_date='';
+}
+if(isset($form['seek_clinic'])){
+	$seek_clinic=$form['seek_clinic'];
+}else{
+	$seek_clinic='';
+}
+if(isset($form['seek_clinic_date'])){
+	$seek_clinic_date=$form['seek_clinic_date'];
+}else{
+	$seek_clinic_date='';
+}
+if(isset($form['seek_room'])){
+	$seek_room=$form['seek_room'];
+}else{
+	$seek_room='';
+}
+if(isset($form['seek_room_date'])){
+	$seek_room_date=$form['seek_room_date'];
+}else{
+	$seek_room_date='';
+}
+if(isset($form['seek_department'])){
+	$seek_department=$form['seek_department'];
+}else{
+	$seek_department='';
+}
+if(isset($form['seek_department_date'])){
+	$seek_department_date=$form['seek_department_date'];
+}else{
+	$seek_department_date='';
+}
+if(isset($form['seek_other'])){
+	$seek_other=$form['seek_other'];
+}else{
+	$seek_other='';
+}
+if(isset($form['seek_other_text'])){
+	$seek_other_text=$form['seek_other_text'];
+}else{
+	$seek_other_text='';
+}
+if(isset($form['seek_other_date'])){
+	$seek_other_date=$form['seek_other_date'];
+}else{
+	$seek_other_date='';
+}
+if(isset($form['seek_unknown'])){
+	$seek_unknown=$form['seek_unknown'];
+}else{
+	$seek_unknown='';
+}
+if(isset($form['patient_hospitalized'])){
+	$patient_hospitalized=$form['patient_hospitalized'];
+}else{
+	$patient_hospitalized='';
+}
+if(isset($form['first_admission'])){
+	$first_admission=$form['first_admission'];
+}else{
+	$first_admission='';
+}
+if(isset($form['second_admission'])){
+	$second_admission=$form['second_admission'];
+}else{
+	$second_admission='';
+}
+if(isset($form['patient_admitted'])){
+	$patient_admitted=$form['patient_admitted'];
+}else{
+	$patient_admitted='';
+}
+if(isset($form['ic_admission'])){ 
+	$ic_admission=$form['ic_admission'];
+}else{
+	$ic_admission='';
+}
+if(isset($form['icu_discharge'])){
+	$icu_discharge=$form['icu_discharge'];
+}else{
+	$icu_discharge='';
+}
+if(isset($form['ventilation'])){
+	$ventilation=$form['ventilation'];
+}else{
+	$ventilation='';
+}
+if(isset($form['ventilation_days'])){
+	$ventilation_days=$form['ventilation_days'];
+}else{
+	$ventilation_days='';
+}
+if(isset($form['discharged'])){
+	$discharged=$form['discharged'];
+}else{
+	$discharged='';
+}
+if(isset($form['first_discharge'])){
+	$first_discharge=$form['first_discharge'];
+}else{
+	$first_discharge='';
+}
+if(isset($form['second_discharge'])){
+	$second_discharge=$form['second_discharge'];
+}else{
+	$second_discharge='';
+}
+if(isset($form['discharged_place'])){
+	$discharged_place=$form['discharged_place'];
+}else{
+	$discharged_place='';
+}
+if(isset($form['discharged_place_other'])){
+	$discharged_place_other=$form['discharged_place_other'];
+}else{
+	$discharged_place_other='';
+}
+if(isset($form['x_ray'])){
+	$x_ray=$form['x_ray'];
+}else{
+	$x_ray='';
+}
+if(isset($form['pneumonia'])){
+	$pneumonia=$form['pneumonia'];
+}else{
+	$pneumonia='';
+}
+if(isset($form['ards'])){
+	$ards=$form['ards'];
+}else{
+	$ards='';
+}
+if(isset($form['leukopenia'])){
+	$leukopenia=$form['leukopenia'];
+}else{
+	$leukopenia='';
+}
+if(isset($form['lymphopenia'])){
+	$lymphopenia=$form['lymphopenia'];
+}else{
+	$lymphopenia='';
+}
+if(isset($form['thrombocytopenia'])){
+	$thrombocytopenia=$form['thrombocytopenia'];
+}else{
+	$thrombocytopenia='';
+}
+if(isset($form['other_complications'])){
+	$other_complications=$form['other_complications'];
+}else{
+	$other_complications='';
+}
+if(isset($form['other_complications_text'])){
+	$other_complications_text=$form['other_complications_text'];
+}else{
+	$other_complications_text='';
+}
+if(isset($form['antiviral_medications'])){
+	$antiviral_medications=$form['antiviral_medications'];
+}else{
+	$antiviral_medications='';
+}
+if(isset($form['id_patient'])){
+	$id_patient=$form['id_patient'];
+}else{
+	$id_patient='';
+}
+ if(isset($form['oseltamivir_start'])){
+ 	$oseltamivir_start=$form['oseltamivir_start'];
+ }else{
+ 	$oseltamivir_start='';
+ }	
+ if(isset($form['oseltamivir_end'])){
+ 	$oseltamivir_end=$form['oseltamivir_end'];
+ }else{
+ 	$oseltamivir_end='';
+ }	
+ if(isset($form['oseltamivir_nb'])){
+ 	$oseltamivir_nb=$form['oseltamivir_nb'];
+ }else{
+ 	$oseltamivir_nb='';
+ }	
+ if(isset($form['oseltamivir_dosage'])){
+ 	$oseltamivir_dosage=$form['oseltamivir_dosage'];
+ }else{
+ 	$oseltamivir_dosage='';
+ }	
+ if(isset($form['zanamivir_start'])){
+ 	$zanamivir_start=$form['zanamivir_start'];
+ }else{
+ 	$zanamivir_start='';
+ }	
+ if(isset($form['zanamivir_end'])){
+ 	$zanamivir_end=$form['zanamivir_end'];
+ }else{
+ 	$zanamivir_end='';
+ }	
+ if(isset($form['zanamivir_nb'])){
+ 	$zanamivir_nb=$form['zanamivir_nb'];
+ }else{
+ 	$zanamivir_nb='';
+ }	
+ if(isset($form['zanamivir_dosage'])){
+ 	$zanamivir_dosage=$form['zanamivir_dosage'];
+ }else{
+ 	$zanamivir_dosage='';
+ }	
+ if(isset($form['other_influenza'])){
+ 	$other_influenza=$form['other_influenza'];
+ }else{
+ 	$other_influenza='';
+ }	
+ if(isset($form['other_influenza_start'])){
+ 	$other_influenza_start=$form['other_influenza_start'];
+ }else{
+ 	$other_influenza_start='';
+ }	
+ if(isset($form['other_influenza_end'])){
+ 	$other_influenza_end=$form['other_influenza_end'];
+ }else{
+ 	$other_influenza_end='';
+ }	
+ if(isset($form['other_influenza_nb'])){
+ 	$other_influenza_nb=$form['other_influenza_nb'];
+ }else{
+ 	$other_influenza_nb='';
+ }	
+ if(isset($form['other_influenza_dosage'])){
+ 	$other_influenza_dosage=$form['other_influenza_dosage'];
+ }else{
+ 	$other_influenza_dosage='';
+ }	
+ if(isset($form['patient_die'])){
+ 	$patient_die=$form['patient_die'];
+ }else{
+ 	$patient_die='';
+ }	
+ if(isset($form['patient_die_date'])){
+ 	$patient_die_date=$form['patient_die_date'];
+ }else{
+ 	$patient_die_date='';
+ }	
+ if(isset($form['virus_infection_date'])){
+ 	$virus_infection_date=$form['virus_infection_date'];
+ }else{
+ 	$virus_infection_date='';
+ }	
+ if(isset($form['specimen_collected'])){
+ 	$specimen_collected=$form['specimen_collected'];
+ }else{
+ 	$specimen_collected='';
+ }	
+ if(isset($form['specimen_collected_other'])){
+ 	$specimen_collected_other=$form['specimen_collected_other'];
+ }else{
+ 	$specimen_collected_other='';
+ }	
+ if(isset($form['influenza_diagnostic'])){
+ 	$influenza_diagnostic=$form['influenza_diagnostic'];
+ }else{
+ 	$influenza_diagnostic='';
+ }	
+ if(isset($form['ridt_specimen_date'])){
+ 	$ridt_specimen_date=$form['ridt_specimen_date'];
+ }else{
+ 	$ridt_specimen_date='';
+ }	
+ if(isset($form['the_result'])){
+ 	$the_result=$form['the_result'];
+ }else{
+ 	$the_result='';
+ }	
+ if(isset($form['the_result_other'])){
+ 	$the_result_other=$form['the_result_other'];
+ }else{
+ 	$the_result_other='';
+ }	
+ if(isset($form['brand'])){
+ 	$brand=$form['brand'];
+ }else{
+ 	$brand='';
+ }	
+ if(isset($form['reactive_airway'])){
+ 	$reactive_airway=$form['reactive_airway'];
+ }else{
+ 	$reactive_airway='';
+ }	
+ if(isset($form['chronic_lung'])){
+ 	$chronic_lung=$form['chronic_lung'];
+ }else{
+ 	$chronic_lung='';
+ }	
+ if(isset($form['chronic_lung_specify'])){
+ 	$chronic_lung_specify=$form['chronic_lung_specify'];
+ }else{
+ 	$chronic_lung_specify='';
+ }	
+ if(isset($form['chronic_heart'])){
+ 	$chronic_heart=$form['chronic_heart'];
+ }else{
+ 	$chronic_heart='';
+ }	
+ if(isset($form['chronic_heart_specify'])){
+ 	$chronic_heart_specify=$form['chronic_heart_specify'];
+ }else{
+ 	$chronic_heart_specify='';
+ }	
+ if(isset($form['diabetes_mellitus'])){
+ 	$diabetes_mellitus=$form['diabetes_mellitus'];
+ }else{
+ 	$diabetes_mellitus='';
+ }	
+ if(isset($form['diabetes_mellitus_specify'])){
+ 	$diabetes_mellitus_specify=$form['diabetes_mellitus_specify'];
+ }else{
+ 	$diabetes_mellitus_specify='';
+ }	
+ if(isset($form['renal_disease'])){
+ 	$renal_disease=$form['renal_disease'];
+ }else{
+ 	$renal_disease='';
+ }	
+ if(isset($form['renal_disease_specify'])){
+ 	$renal_disease_specify=$form['renal_disease_specify'];
+ }else{
+ 	$renal_disease_specify='';
+ }	
+ if(isset($form['immunosuppressive_condition'])){
+ 	$immunosuppressive_condition=$form['immunosuppressive_condition'];
+ }else{
+ 	$immunosuppressive_condition='';
+ }	
+ if(isset($form['immunosuppressive_condition_specify'])){
+ 	$immunosuppressive_condition_specify=$form['immunosuppressive_condition_specify'];
+ }else{
+ 	$immunosuppressive_condition_specify='';
+ }	
+ if(isset($form['chemotherapy'])){
+ 	$chemotherapy=$form['chemotherapy'];
+ }else{
+ 	$chemotherapy='';
+ }	
+ if(isset($form['chemotherapy_specify'])){
+ 	$chemotherapy_specify=$form['chemotherapy_specify'];
+ }else{
+ 	$chemotherapy_specify='';
+ }	
+ if(isset($form['neurodevelopmental_disorder'])){
+ 	$neurodevelopmental_disorder=$form['neurodevelopmental_disorder'];
+ }else{
+ 	$neurodevelopmental_disorder='';
+ }	
+ if(isset($form['neurodevelopmental_disorder_specify'])){
+ 	$neurodevelopmental_disorder_specify=$form['neurodevelopmental_disorder_specify'];
+ }else{
+ 	$neurodevelopmental_disorder_specify='';
+ }	
+ if(isset($form['chronic_diseases'])){
+ 	$chronic_diseases=$form['chronic_diseases'];
+ }else{
+ 	$chronic_diseases='';
+ }	
+ if(isset($form['chronic_diseases_specify'])){
+ 	$chronic_diseases_specify=$form['chronic_diseases_specify'];
+ }else{
+ 	$chronic_diseases_specify='';
+ }	
+ if(isset($form['patient_frequently'])){
+ 	$patient_frequently=$form['patient_frequently'];
+ }else{
+ 	$patient_frequently='';
+ }	
+ if(isset($form['patient_frequently_specify'])){
+ 	$patient_frequently_specify=$form['patient_frequently_specify'];
+ }else{
+ 	$patient_frequently_specify='';
+ }	
+ if(isset($form['patient_pregnant'])){
+ 	$patient_pregnant=$form['patient_pregnant'];
+ }else{
+ 	$patient_pregnant='';
+ }	
+ if(isset($form['patient_pregnant_text'])){
+ 	$patient_pregnant_text=$form['patient_pregnant_text'];
+ }else{
+ 	$patient_pregnant_text='';
+ }	
+ if(isset($form['patien_pregnant_date'])){
+ 	$patien_pregnant_date=$form['patien_pregnant_date'];
+ }else{
+ 	$patien_pregnant_date='';
+ }	
+ if(isset($form['currently_smoke'])){
+ 	$currently_smoke=$form['currently_smoke'];
+ }else{
+ 	$currently_smoke='';
+ }	
+ if(isset($form['patient_vaccinated'])){
+ 	$patient_vaccinated=$form['patient_vaccinated'];
+ }else{
+ 	$patient_vaccinated='';
+ }	
+ if(isset($form['influenza_vaccination_date1'])){
+ 	$influenza_vaccination_date1=$form['influenza_vaccination_date1'];
+ }else{
+ 	$influenza_vaccination_date1='';
+ }	
+ if(isset($form['influenza_vaccination_date2'])){
+ 	$influenza_vaccination_date2=$form['influenza_vaccination_date2'];
+ }else{
+ 	$influenza_vaccination_date2='';
+ }	
+ if(isset($form['type_influenza_inactivated'])){
+ 	$type_influenza_inactivated=$form['type_influenza_inactivated'];
+ }else{
+ 	$type_influenza_inactivated='';
+ }	
+ if(isset($form['type_influenza_live_attenuated'])){
+ 	$type_influenza_live_attenuated=$form['type_influenza_live_attenuated'];
+ }else{
+ 	$type_influenza_live_attenuated='';
+ }	
+ if(isset($form['type_influenza_unknown'])){
+ 	$type_influenza_unknown=$form['type_influenza_unknown'];
+ }else{
+ 	$type_influenza_unknown='';
+ }	
+ if(isset($form['travel_outside'])){
+ 	$travel_outside=$form['travel_outside'];
+ }else{
+ 	$travel_outside='';
+ }	
+ if(isset($form['patient_travel_trip1_date1'])){
+ 	$patient_travel_trip1_date1=$form['patient_travel_trip1_date1'];
+ }else{
+ 	$patient_travel_trip1_date1='';
+ }	
+ if(isset($form['patient_travel_trip1_state'])){
+ 	$patient_travel_trip1_state=$form['patient_travel_trip1_state'];
+ }else{
+ 	$patient_travel_trip1_state='';
+ }	
+ if(isset($form['patient_travel_trip1_date2'])){
+ 	$patient_travel_trip1_date2=$form['patient_travel_trip1_date2'];
+ }else{
+ 	$patient_travel_trip1_date2='';
+ }	
+ if(isset($form['patient_travel_trip1_country'])){
+ 	$patient_travel_trip1_country=$form['patient_travel_trip1_country'];
+ }else{
+ 	$patient_travel_trip1_country='';
+ }	
+ if(isset($form['patient_travel_trip1_city'])){
+ 	$patient_travel_trip1_city=$form['patient_travel_trip1_city'];
+ }else{
+ 	$patient_travel_trip1_city='';
+ }	
+ if(isset($form['patient_travel_trip2_date1'])){
+ 	$patient_travel_trip2_date1=$form['patient_travel_trip2_date1'];
+ }else{
+ 	$patient_travel_trip2_date1='';
+ }	
+ if(isset($form['patient_travel_trip2_date2'])){
+ 	$patient_travel_trip2_date2=$form['patient_travel_trip2_date2'];
+ }else{
+ 	$patient_travel_trip2_date2='';
+ }	
+ if(isset($form['patient_travel_trip2_country'])){
+ 	$patient_travel_trip2_country=$form['patient_travel_trip2_country'];
+ }else{
+ 	$patient_travel_trip2_country='';
+ }	
+ if(isset($form['patient_travel_trip2_state'])){
+ 	$patient_travel_trip2_state=$form['patient_travel_trip2_state'];
+ }else{
+ 	$patient_travel_trip2_state='';
+ }	
+ if(isset($form['patient_travel_trip2_city'])){
+ 	$patient_travel_trip2_city=$form['patient_travel_trip2_city'];
+ }else{
+ 	$patient_travel_trip2_city='';
+ }	
+ if(isset($form['travel_group_alone'])){
+ 	$travel_group_alone=$form['travel_group_alone'];
+ }else{
+ 	$travel_group_alone='';
+ }	
+ if(isset($form['travel_group_household'])){
+ 	$travel_group_household=$form['travel_group_household'];
+ }else{
+ 	$travel_group_household='';
+ }	
+ if(isset($form['travel_group_non_household'])){
+ 	$travel_group_non_household=$form['travel_group_non_household'];
+ }else{
+ 	$travel_group_non_household='';
+ }	
+ if(isset($form['travel_group_unknown'])){
+ 	$travel_group_unknown=$form['travel_group_unknown'];
+ }else{
+ 	$travel_group_unknown='';
+ }	
+ if(isset($form['live_animal'])){
+ 	$live_animal=$form['live_animal'];
+ }else{
+ 	$live_animal='';
+ }	
+ if(isset($form['live_animal_specify'])){
+ 	$live_animal_specify=$form['live_animal_specify'];
+ }else{
+ 	$live_animal_specify='';
+ }	
+ if(isset($form['agricultural_fair_day'])){
+ 	$agricultural_fair_day=$form['agricultural_fair_day'];
+ }else{
+ 	$agricultural_fair_day='';
+ }	
+ if(isset($form['agricultural_fair_1day'])){
+ 	$agricultural_fair_1day=$form['agricultural_fair_1day'];
+ }else{
+ 	$agricultural_fair_1day='';
+ }	
+ if(isset($form['agricultural_fair_2days'])){
+ 	$agricultural_fair_2days=$form['agricultural_fair_2days'];
+ }else{
+ 	$agricultural_fair_2days='';
+ }	
+ if(isset($form['agricultural_fair_3days'])){
+ 	$agricultural_fair_3days=$form['agricultural_fair_3days'];
+ }else{
+ 	$agricultural_fair_3days='';
+ }	
+ if(isset($form['agricultural_fair_4days'])){
+ 	$agricultural_fair_4days=$form['agricultural_fair_4days'];
+ }else{
+ 	$agricultural_fair_4days='';
+ }	
+ if(isset($form['agricultural_fair_5days'])){
+ 	$agricultural_fair_5days=$form['agricultural_fair_5days'];
+ }else{
+ 	$agricultural_fair_5days='';
+ }	
+ if(isset($form['agricultural_fair_6days'])){
+ 	$agricultural_fair_6days=$form['agricultural_fair_6days'];
+ }else{
+ 	$agricultural_fair_6days='';
+ }	
+ if(isset($form['agricultural_fair_7days'])){
+ 	$agricultural_fair_7days=$form['agricultural_fair_7days'];
+ }else{
+ 	$agricultural_fair_7days='';
+ }	
+ if(isset($form['livestock_animals'])){
+ 	$livestock_animals=$form['livestock_animals'];
+ }else{
+ 	$livestock_animals='';
+ }	
+ if(isset($form['livestock_animals_specify'])){
+ 	$livestock_animals_specify=$form['livestock_animals_specify'];
+ }else{
+ 	$livestock_animals_specify='';
+ }	
+ if(isset($form['type_animals_horses'])){
+ 	$type_animals_horses=$form['type_animals_horses'];
+ }else{
+ 	$type_animals_horses='';
+ }	
+ if(isset($form['type_animals_cows'])){
+ 	$type_animals_cows=$form['type_animals_cows'];
+ }else{
+ 	$type_animals_cows='';
+ }	
+ if(isset($form['type_animals_poultry'])){
+ 	$type_animals_poultry=$form['type_animals_poultry'];
+ }else{
+ 	$type_animals_poultry='';
+ }	
+ if(isset($form['type_animals_sheep'])){
+ 	$type_animals_sheep=$form['type_animals_sheep'];
+ }else{
+ 	$type_animals_sheep='';
+ }	
+ if(isset($form['type_animals_gotas'])){
+ 	$type_animals_gotas=$form['type_animals_gotas'];
+ }else{
+ 	$type_animals_gotas='';
+ }	
+ if(isset($form['type_animals_pigs'])){
+ 	$type_animals_pigs=$form['type_animals_pigs'];
+ }else{
+ 	$type_animals_pigs='';
+ }	
+ if(isset($form['type_animals_others'])){
+ 	$type_animals_others=$form['type_animals_others'];
+ }else{
+ 	$type_animals_others='';
+ }
+ if(isset($form['type_animals_others_text'])){
+ 	$type_animals_others_text=$form['type_animals_others_text'];
+ }else{
+ 	$type_animals_others_text='';
+ }	
+ if(isset($form['direct_contact_zoo'])){
+ 	$direct_contact_zoo=$form['direct_contact_zoo'];
+ }else{
+ 	$direct_contact_zoo='';
+ }	
+ if(isset($form['direct_contact_home'])){
+ 	$direct_contact_home=$form['direct_contact_home'];
+ }else{
+ 	$direct_contact_home='';
+ }	
+ if(isset($form['direct_contact_work'])){
+ 	$direct_contact_work=$form['direct_contact_work'];
+ }else{
+ 	$direct_contact_work='';
+ }	
+ if(isset($form['direct_contact_event'])){
+ 	$direct_contact_event=$form['direct_contact_event'];
+ }else{
+ 	$direct_contact_event='';
+ }	
+ if(isset($form['direct_contact_market'])){
+ 	$direct_contact_market=$form['direct_contact_market'];
+ }else{
+ 	$direct_contact_market='';
+ }	
+ if(isset($form['direct_contact_other'])){
+ 	$direct_contact_other=$form['direct_contact_other'];
+ }else{
+ 	$direct_contact_other='';
+ }	
+ if(isset($form['direct_contact_other_text'])){
+	$direct_contact_other_text=$form['direct_contact_other_text'];
+}else{
+	$direct_contact_other_text='';
+}
+ if(isset($form['indirect_contact'])){
+ 	$indirect_contact=$form['indirect_contact'];
+ }else{
+ 	$indirect_contact='';
+ }	
+ if(isset($form['indirect_contact_horses'])){
+ 	$indirect_contact_horses=$form['indirect_contact_horses'];
+ }else{
+ 	$indirect_contact_horses='';
+ }	
+ if(isset($form['indirect_contact_cows'])){
+ 	$indirect_contact_cows=$form['indirect_contact_cows'];
+ }else{
+ 	$indirect_contact_cows='';
+ }	
+ if(isset($form['indirect_contact_poultry'])){
+ 	$indirect_contact_poultry=$form['indirect_contact_poultry'];
+ }else{
+ 	$indirect_contact_poultry='';
+ }	
+ if(isset($form['indirect_contact_sheep'])){
+ 	$indirect_contact_sheep=$form['indirect_contact_sheep'];
+ }else{
+ 	$indirect_contact_sheep='';
+ }	
+ if(isset($form['indirect_contact_goats'])){
+ 	$indirect_contact_goats=$form['indirect_contact_goats'];
+ }else{
+ 	$indirect_contact_goats='';
+ }	
+ if(isset($form['indirect_contact_pigs'])){
+ 	$indirect_contact_pigs=$form['indirect_contact_pigs'];
+ }else{
+ 	$indirect_contact_pigs='';
+ }	
+ if(isset($form['indirect_contact_other'])){
+ 	$indirect_contact_other=$form['indirect_contact_other'];
+ }else{
+ 	$indirect_contact_other='';
+ }
+ if(isset($form['indirect_contact_other_text'])){
+ 	$indirect_contact_other_text=$form['indirect_contact_other_text'];
+ }else{
+ 	$indirect_contact_other_text='';
+ }	
+ if(isset($form['indirect_contact_zoo'])){
+ 	$indirect_contact_zoo=$form['indirect_contact_zoo'];
+ }else{
+ 	$indirect_contact_zoo='';
+ }	
+ if(isset($form['indirect_contact_home'])){
+ 	$indirect_contact_home=$form['indirect_contact_home'];
+ }else{
+ 	$indirect_contact_home='';
+ }	
+ if(isset($form['indirect_contact_work'])){
+ 	$indirect_contact_work=$form['indirect_contact_work'];
+ }else{
+ 	$indirect_contact_work='';
+ }	
+ if(isset($form['indirect_contact_event'])){
+ 	$indirect_contact_event=$form['indirect_contact_event'];
+ }else{
+ 	$indirect_contact_event='';
+ }	
+ if(isset($form['indirect_contact_market'])){
+ 	$indirect_contact_market=$form['indirect_contact_market'];
+ }else{
+ 	$indirect_contact_market='';
+ }	
+ if(isset($form['indirect_contact_other2'])){
+ 	$indirect_contact_other2=$form['indirect_contact_other2'];
+ }else{
+ 	$indirect_contact_other2='';
+ }	
+ if(isset($form['indirect_contact_other2_text'])){
+	$indirect_contact_other2_text=$form['indirect_contact_other2_text'];
+}else{
+	$indirect_contact_other2_text='';
+}
+if(isset($form['direct_indirect_contact'])){
+	$direct_indirect_contact=$form['direct_indirect_contact'];
+}else{
+	$direct_indirect_contact='';
+	}
+if(isset($form['direct_indirect_contact_specify'])){
+	$direct_indirect_contact_specify=$form['direct_indirect_contact_specify'];
+}else{
+	$direct_indirect_contact_specify='';
+	}
+if(isset($form['any_contact'])){
+	$any_contact=$form['any_contact'];
+}else{
+	$any_contact='';
+	}
+if(isset($form['any_contact_1day'])){
+	$any_contact_1day=$form['any_contact_1day'];
+}else{
+	$any_contact_1day='';
+}
+if(isset($form['any_contact_2days'])){
+	$any_contact_2days=$form['any_contact_2days'];
+}else{
+	$any_contact_2days='';
+}
+if(isset($form['any_contact_3days'])){
+	$any_contact_3days=$form['any_contact_3days'];
+}else{
+	$any_contact_3days='';
+}
+if(isset($form['any_contact_4days'])){
+	$any_contact_4days=$form['any_contact_4days'];
+}else{
+	$any_contact_4days='';
+	}
+if(isset($form['any_contact_5days'])){
+	$any_contact_5days=$form['any_contact_5days'];
+}else{
+	$any_contact_5days='';
+	}
+if(isset($form['any_contact_6days'])){
+	$any_contact_6days=$form['any_contact_6days'];
+}else{
+	$any_contact_6days='';
+	}
+if(isset($form['any_contact_7days'])){
+	$any_contact_7days=$form['any_contact_7days'];
+}else{
+	$any_contact_7days='';
+	}
+if(isset($form['any_pig_contact'])){
+	$any_pig_contact=$form['any_pig_contact'];
+}else{
+	$any_pig_contact='';
+	}
+if(isset($form['household_own'])){
+	$household_own=$form['household_own'];
+}else{
+	$household_own='';
+	}
+if(isset($form['animals_kept_horses'])){
+	$animals_kept_horses=$form['animals_kept_horses'];
+}else{
+	$animals_kept_horses='';
+	}
+if(isset($form['animals_kept_cows'])){
+	$animals_kept_cows=$form['animals_kept_cows'];
+}else{
+	$animals_kept_cows='';
+	}
+if(isset($form['animals_kept_poultry'])){
+	$animals_kept_poultry=$form['animals_kept_poultry'];
+}else{
+	$animals_kept_poultry='';
+	}
+if(isset($form['animals_kept_sheep'])){
+	$animals_kept_sheep=$form['animals_kept_sheep'];
+}else{
+	$animals_kept_sheep='';
+	}
+if(isset($form['animals_kept_goats'])){
+	$animals_kept_goats=$form['animals_kept_goats'];
+}else{
+	$animals_kept_goats='';
+	}
+if(isset($form['animals_kept_pigs'])){
+	$animals_kept_pigs=$form['animals_kept_pigs'];
+}else{
+	$animals_kept_pigs='';
+	}
+if(isset($form['animals_kept_other'])){
+	$animals_kept_other=$form['animals_kept_other'];
+}else{
+	$animals_kept_other='';
+}
+if(isset($form['animals_kept_other_text'])){
+	$animals_kept_other_text=$form['animals_kept_other_text'];
+}else{
+	$animals_kept_other_text='';
+}
+if(isset($form['patient_reside'])){
+	$patient_reside=$form['patient_reside'];
+}else{
+	$patient_reside='';
+}
+if(isset($form['people_resided'])){
+	$people_resided=$form['people_resided'];
+}else{
+	$people_resided='';
+}
+if(isset($form['patient_attend'])){
+	$patient_attend=$form['patient_attend'];
+}else{
+	$patient_attend='';
+}
+if(isset($form['patient_attend_specify'])){
+	$patient_attend_specify=$form['patient_attend_specify'];
+}else{
+	$patient_attend_specify='';
+}
+if(isset($form['patient_class'])){
+	$patient_class=$form['patient_class'];
+}else{
+	$patient_class='';
+}
+if(isset($form['patient_school'])){
+	$patient_school=$form['patient_school'];
+}else{
+	$patient_school='';
+}
+if(isset($form['patient_school_specify'])){
+	$patient_school_specify=$form['patient_school_specify'];
+}else{
+	$patient_school_specify='';
+}
+if(isset($form['patient_school_children'])){
+	$patient_school_children=$form['patient_school_children'];
+}else{
+	$patient_school_children='';
+}
+if(isset($form['patient_ill'])){
+	$patient_ill=$form['patient_ill'];
+}else{
+	$patient_ill='';
+}
+if(isset($form['members_working'])){
+	$members_working=$form['members_working'];
+}else{
+	$members_working='';
+}
+if(isset($form['patient_handle'])){
+	$patient_handle=$form['patient_handle'];
+}else{
+	$patient_handle='';
+}
+if(isset($form['patient_volunteer'])){
+	$patient_volunteer=$form['patient_volunteer'];
+}else{
+	$patient_volunteer='';
+}
+if(isset($form['facility_job'])){
+	$facility_job=$form['facility_job'];
+}else{
+	$facility_job='';
+}
+if(isset($form['facility_job_other'])){
+	$facility_job_other=$form['facility_job_other'];
+}else{
+	$facility_job_other='';
+}
+if(isset($form['contact_working'])){
+	$contact_working=$form['contact_working'];
+}else{
+	$contact_working='';
+}
+if(isset($form['patient_hospital'])){
+	$patient_hospital=$form['patient_hospital'];
+}else{
+	$patient_hospital='';
+}
+if(isset($form['patient_hospital_date1'])){
+	$patient_hospital_date1=$form['patient_hospital_date1'];
+}else{
+	$patient_hospital_date1='';
+}
+if(isset($form['patient_hospital_date2'])){
+	$patient_hospital_date2=$form['patient_hospital_date2'];
+}else{
+	$patient_hospital_date2='';
+}
+if(isset($form['patient_hospital_city'])){
+	$patient_hospital_city=$form['patient_hospital_city'];
+}else{
+	$patient_hospital_city='';
+}
+if(isset($form['patient_clinic'])){
+	$patient_clinic=$form['patient_clinic'];
+}else{
+	$patient_clinic='';
+}
+if(isset($form['patient_clinic_date1'])){
+	$patient_clinic_date1=$form['patient_clinic_date1'];
+}else{
+	$patient_clinic_date1='';
+}
+if(isset($form['patient_clinic_date2'])){
+	$patient_clinic_date2=$form['patient_clinic_date2'];
+}else{
+	$patient_clinic_date2='';
+}
+if(isset($form['patient_clinic_city'])){
+	$patient_clinic_city=$form['patient_clinic_city'];
+}else{
+	$patient_clinic_city='';
+}
+if(isset($form['close_contact'])){
+	$close_contact=$form['close_contact'];
+}else{
+	$close_contact='';
+}
+if(isset($form['before_household'])){
+	$before_household=$form['before_household'];
+}else{
+	$before_household='';
+}
+if(isset($form['after_household'])){
+	$after_household=$form['after_household'];
+}else{
+	$after_household='';
+}
+if(isset($form['patient_confirmed'])){
+	$patient_confirmed=$form['patient_confirmed'];
+}else{
+	$patient_confirmed='';
+}
+if(isset($form['additional_comments'])){
+	$additional_comments=$form['additional_comments'];
+}else{
+	$additional_comments='';
+}
+
+
+if(isset($form['id'])) {
+	
+$sql = "update cdc set state='$state', date_reported='$date_reported', date_interview='$date_interview', state_epi='$state_epi', state_lab='$state_lab', household_id='$household_id', cdc_id='$cdc_id', 
+cluster_id='$cluster_id',time_report='$time_report',subtype='$subtype',subtype_other='$subtype_other',date_symptoms='$date_symptoms',fever='$fever',fever_date='$fever_date',felt_feverish='$felt_feverish',
+felt_feverish_date='$felt_feverish_date', cough='$cough',sore_throat='$sore_throat',muscle_aches='$muscle_aches',headache='$headache',shortness_breath='$shortness_breath',
+vomiting='$vomiting',diarrhea='$diarrhea',eye_infection='$eye_infection',rash='$rash',fatigue='$fatigue',seizures='$seizures',other='$other',have_symptoms='$have_symptoms',back_normal_date='$back_normal_date',
+any_medical='$any_medical',seek_office='$seek_office',seek_office_date='$seek_office_date',seek_clinic='$seek_clinic',seek_clinic_date='$seek_clinic_date',seek_room='$seek_room',
+seek_room_date='$seek_room_date',seek_department='$seek_department',seek_department_date='$seek_department_date',seek_other='$seek_other',seek_other_text='$seek_other_text',
+seek_other_date='$seek_other_date',seek_unknown='$seek_unknown',patient_hospitalized='$patient_hospitalized',first_admission='$first_admission',second_admission='$second_admission',patient_admitted='$patient_admitted',
+ic_admission='$ic_admission',icu_discharge='$icu_discharge',ventilation='$ventilation',ventilation_days='$ventilation_days',discharged='$discharged',first_discharge='$first_discharge',
+second_discharge='$second_discharge',discharged_place='$discharged_place',discharged_place_other='$discharged_place_other',x_ray='$x_ray',pneumonia='$pneumonia',ards='$ards',
+leukopenia='$leukopenia',lymphopenia='$lymphopenia',thrombocytopenia='$thrombocytopenia',other_complications='$other_complications',other_complications_text='$other_complications_text',antiviral_medications='$antiviral_medications',
+oseltamivir_start='$oseltamivir_start',oseltamivir_end='$oseltamivir_end',oseltamivir_nb='$oseltamivir_nb',oseltamivir_dosage='$oseltamivir_dosage',zanamivir_start='$zanamivir_start',zanamivir_end='$zanamivir_end',
+zanamivir_nb='$zanamivir_nb',zanamivir_dosage='$zanamivir_dosage',other_influenza='$other_influenza',other_influenza_start='$other_influenza_start',other_influenza_end='$other_influenza_end',other_influenza_nb='$other_influenza_nb',other_influenza_dosage='$other_influenza_dosage',
+patient_die='$patient_die',patient_die_date='$patient_die_date',virus_infection_date='$virus_infection_date',
+specimen_collected='$specimen_collected',specimen_collected_other='$specimen_collected_other',influenza_diagnostic='$influenza_diagnostic',ridt_specimen_date='$ridt_specimen_date',the_result='$the_result',
+the_result_other='$the_result_other',brand='$brand',reactive_airway='$reactive_airway',chronic_lung='$chronic_lung',chronic_lung_specify='$chronic_lung_specify',chronic_heart='$chronic_heart',chronic_heart_specify='$chronic_heart_specify',diabetes_mellitus='$diabetes_mellitus',
+diabetes_mellitus_specify='$diabetes_mellitus_specify',renal_disease='$renal_disease',renal_disease_specify='$renal_disease_specify',immunosuppressive_condition='$immunosuppressive_condition',immunosuppressive_condition_specify='$immunosuppressive_condition_specify',chemotherapy='$chemotherapy',chemotherapy_specify='$chemotherapy_specify',neurodevelopmental_disorder='$neurodevelopmental_disorder',neurodevelopmental_disorder_specify='$neurodevelopmental_disorder_specify',chronic_diseases='$chronic_diseases',chronic_diseases_specify='$chronic_diseases_specify',patient_frequently='$patient_frequently',patient_frequently_specify='$patient_frequently_specify',patient_pregnant='$patient_pregnant',patient_pregnant_text='$patient_pregnant_text',patien_pregnant_date='$patien_pregnant_date',currently_smoke='$currently_smoke',patient_vaccinated='$patient_vaccinated',influenza_vaccination_date1='$influenza_vaccination_date1',influenza_vaccination_date2='$influenza_vaccination_date2',type_influenza_inactivated='$type_influenza_inactivated',type_influenza_live_attenuated='$type_influenza_live_attenuated',type_influenza_unknown='$type_influenza_unknown',travel_outside='$travel_outside',patient_travel_trip1_date1='$patient_travel_trip1_date1',patient_travel_trip1_state='$patient_travel_trip1_state',
+patient_travel_trip1_date2='$patient_travel_trip1_date2',patient_travel_trip1_country='$patient_travel_trip1_country',patient_travel_trip1_city='$patient_travel_trip1_city',patient_travel_trip2_date1='$patient_travel_trip2_date1',
+patient_travel_trip2_date2='$patient_travel_trip2_date2',patient_travel_trip2_country='$patient_travel_trip2_country',patient_travel_trip2_state='$patient_travel_trip2_state',patient_travel_trip2_city='$patient_travel_trip2_city',travel_group_alone='$travel_group_alone',
+travel_group_household='$travel_group_household',travel_group_non_household='$travel_group_non_household',travel_group_unknown='$travel_group_unknown',live_animal='$live_animal',live_animal_specify='$live_animal_specify',
+agricultural_fair_day='$agricultural_fair_day',agricultural_fair_1day='$agricultural_fair_1day',agricultural_fair_2days='$agricultural_fair_2days',agricultural_fair_3days='$agricultural_fair_3days',
+agricultural_fair_4days='$agricultural_fair_4days',agricultural_fair_5days='$agricultural_fair_5days',agricultural_fair_6days='$agricultural_fair_6days',agricultural_fair_7days='$agricultural_fair_7days',livestock_animals='$livestock_animals',livestock_animals_specify='$livestock_animals_specify',
+type_animals_horses='$type_animals_horses',
+type_animals_cows='$type_animals_cows',type_animals_poultry='$type_animals_poultry',type_animals_sheep='$type_animals_sheep',type_animals_gotas='$type_animals_gotas',type_animals_pigs='$type_animals_pigs',
+type_animals_others='$type_animals_others',type_animals_others_text='$type_animals_others_text',direct_contact_zoo='$direct_contact_zoo',direct_contact_home='$direct_contact_home',direct_contact_work='$direct_contact_work',direct_contact_event='$direct_contact_event',direct_contact_market='$direct_contact_market',
+direct_contact_other='$direct_contact_other',direct_contact_other_text='$direct_contact_other_text',
+indirect_contact='$indirect_contact',indirect_contact_horses='$indirect_contact_horses',
+indirect_contact_cows='$indirect_contact_cows',indirect_contact_poultry='$indirect_contact_poultry',indirect_contact_sheep='$indirect_contact_sheep',indirect_contact_goats='$indirect_contact_goats',indirect_contact_pigs='$indirect_contact_pigs',
+indirect_contact_other='$indirect_contact_other',indirect_contact_other_text='$indirect_contact_other_text',indirect_contact_zoo='$indirect_contact_zoo',indirect_contact_home='$indirect_contact_home',indirect_contact_work='$indirect_contact_work',indirect_contact_event='$indirect_contact_event',indirect_contact_market='$indirect_contact_market',
+indirect_contact_other2='$indirect_contact_other2',indirect_contact_other2_text='$indirect_contact_other2_text',
+direct_indirect_contact='$direct_indirect_contact',direct_indirect_contact_specify='$direct_indirect_contact_specify',any_contact='$any_contact',any_contact_1day='$any_contact_1day',any_contact_2days='$any_contact_2days',any_contact_3days='$any_contact_3days',any_contact_4days='$any_contact_4days',
+any_contact_5days='$any_contact_5days',any_contact_6days='$any_contact_6days',any_contact_7days='$any_contact_7days',any_pig_contact='$any_pig_contact',household_own='$household_own',animals_kept_horses='$animals_kept_horses',animals_kept_cows='$animals_kept_cows',
+animals_kept_poultry='$animals_kept_poultry',animals_kept_sheep='$animals_kept_sheep',animals_kept_goats='$animals_kept_goats',animals_kept_pigs='$animals_kept_pigs',animals_kept_other='$animals_kept_other',animals_kept_other_text='$animals_kept_other_text',patient_reside='$patient_reside',
+people_resided='$people_resided',patient_attend='$patient_attend',patient_attend_specify='$patient_attend_specify',patient_class='$patient_class',patient_school='$patient_school',patient_school_specify='$patient_school_specify',patient_school_children='$patient_school_children',patient_ill='$patient_ill',
+members_working='$members_working',patient_handle='$patient_handle',patient_volunteer='$patient_volunteer',facility_job='$facility_job',facility_job_other='$facility_job_other',contact_working='$contact_working',
+patient_hospital='$patient_hospital',patient_hospital_date1='$patient_hospital_date1',patient_hospital_date2='$patient_hospital_date2',patient_hospital_city='$patient_hospital_city',patient_clinic='$patient_clinic',patient_clinic_date1='$patient_clinic_date1',patient_clinic_date2='$patient_clinic_date2',
+patient_clinic_city='$patient_clinic_city',close_contact='$close_contact',before_household='$before_household',
+after_household='$after_household',patient_confirmed='$patient_confirmed',additional_comments='$additional_comments' where id_patient='$id_patient';";
+ 
+ if (mysqli_query($conn, $sql)) 
+    {
+        $res = array("response" => "updated");
+    echo json_encode($res);
+    } 
+    else 
+    {
+      $res = array("response" => "error");
+    //echo json_encode($res);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+mysqli_close($conn);
+
+}else{
+
+$sql = "INSERT INTO `cdc`(`state`, `date_reported`, `date_interview`, `state_epi`, `state_lab`, `household_id`, `cdc_id`, 
+`cluster_id`,`time_report`, `subtype`, `subtype_other`, `date_symptoms`, `fever`, `fever_date`, `felt_feverish`, `felt_feverish_date`, 
+`cough`, `sore_throat`, `muscle_aches`, `headache`, `shortness_breath`, `vomiting`, `diarrhea`, `eye_infection`, `rash`, 
+`fatigue`, `seizures`, `other`, `have_symptoms`, `back_normal_date`, `any_medical`, `seek_office`, `seek_office_date`, 
+`seek_clinic`, `seek_clinic_date`, `seek_room`, `seek_room_date`, `seek_department`, `seek_department_date`, `seek_other`, 
+`seek_other_text`, `seek_other_date`, `seek_unknown`, `patient_hospitalized`, `first_admission`, `second_admission`, 
+`patient_admitted`, `ic_admission`, `icu_discharge`, `ventilation`, `ventilation_days`, `discharged`, `first_discharge`, 
+`second_discharge`, `discharged_place`, `discharged_place_other`, `x_ray`, `pneumonia`, `ards`, `leukopenia`, `lymphopenia`, 
+`thrombocytopenia`, `other_complications`, `other_complications_text`, `antiviral_medications`, `id_patient`,
+`oseltamivir_start`,`oseltamivir_end`,`oseltamivir_nb`,`oseltamivir_dosage`,`zanamivir_start`,`zanamivir_end`,`zanamivir_nb`,
+`zanamivir_dosage`,`other_influenza`,`other_influenza_start`,`other_influenza_end`,`other_influenza_nb`,`other_influenza_dosage`,
+`patient_die`,`patient_die_date`,`virus_infection_date`,`specimen_collected`,`specimen_collected_other`,`influenza_diagnostic`,
+`ridt_specimen_date`,`the_result`,`the_result_other`,`brand`,`reactive_airway`,`chronic_lung`,`chronic_lung_specify`,
+`chronic_heart`,`chronic_heart_specify`,`diabetes_mellitus`,`diabetes_mellitus_specify`,
+`renal_disease`,`renal_disease_specify`,`immunosuppressive_condition`,`immunosuppressive_condition_specify`,`chemotherapy`,
+`chemotherapy_specify`,`neurodevelopmental_disorder`,`neurodevelopmental_disorder_specify`,`chronic_diseases`,
+`chronic_diseases_specify`,`patient_frequently`,`patient_frequently_specify`,`patient_pregnant`,`patient_pregnant_text`,
+`patien_pregnant_date`,`currently_smoke`,`patient_vaccinated`,`influenza_vaccination_date1`,`influenza_vaccination_date2`,
+`type_influenza_inactivated`,`type_influenza_live_attenuated`,`type_influenza_unknown`,`travel_outside`,`patient_travel_trip1_date1`,
+`patient_travel_trip1_state`,`patient_travel_trip1_date2`,`patient_travel_trip1_country`,`patient_travel_trip1_city`,
+`patient_travel_trip2_date1`,`patient_travel_trip2_date2`,`patient_travel_trip2_country`,`patient_travel_trip2_state`,
+`patient_travel_trip2_city`,`travel_group_alone`,`travel_group_household`,`travel_group_non_household`,`travel_group_unknown`,`live_animal`,`live_animal_specify`,
+`agricultural_fair_day`,`agricultural_fair_1day`,`agricultural_fair_2days`,`agricultural_fair_3days`,`agricultural_fair_4days`,
+`agricultural_fair_5days`,`agricultural_fair_6days`,`agricultural_fair_7days`,`livestock_animals`,`livestock_animals_specify`,
+`type_animals_horses`,`type_animals_cows`,`type_animals_poultry`,`type_animals_sheep`,`type_animals_gotas`,`type_animals_pigs`,
+`type_animals_others`,`type_animals_others_text`,`direct_contact_zoo`,`direct_contact_home`,`direct_contact_work`,`direct_contact_event`,
+`direct_contact_market`,`direct_contact_other`,`direct_contact_other_text`,
+`indirect_contact`,`indirect_contact_horses`,`indirect_contact_cows`,`indirect_contact_poultry`,`indirect_contact_sheep`,`indirect_contact_goats`,`indirect_contact_pigs`,
+`indirect_contact_other`,`indirect_contact_other_text`,`indirect_contact_zoo`,`indirect_contact_home`,`indirect_contact_work`,`indirect_contact_event`,
+`indirect_contact_market`,`indirect_contact_other2`,`indirect_contact_other2_text`,`direct_indirect_contact`,`direct_indirect_contact_specify`,`any_contact`,`any_contact_1day`,`any_contact_2days`,`any_contact_3days`,`any_contact_4days`,`any_contact_5days`,
+`any_contact_6days`,`any_contact_7days`,`any_pig_contact`,`household_own`,`animals_kept_horses`,`animals_kept_cows`,`animals_kept_poultry`,`animals_kept_sheep`,`animals_kept_goats`,
+`animals_kept_pigs`,`animals_kept_other`,`animals_kept_other_text`,`patient_reside`,`people_resided`,`patient_attend`,`patient_attend_specify`,`patient_class`,`patient_school`,
+`patient_school_specify`,`patient_school_children`,`patient_ill`,`members_working`,`patient_handle`,`patient_volunteer`,`facility_job`,`facility_job_other`,
+`contact_working`,`patient_hospital`,`patient_hospital_date1`,`patient_hospital_date2`,`patient_hospital_city`,`patient_clinic`,`patient_clinic_date1`,`patient_clinic_date2`,
+`patient_clinic_city`,`close_contact`,`before_household`,`after_household`,`patient_confirmed`,`additional_comments`) VALUES ('$state','$date_reported','$date_interview','$state_epi','$state_lab','$household_id','$cdc_id','$cluster_id','$time_report',
+'$subtype','$subtype_other','$date_symptoms','$fever','$fever_date','$felt_feverish','$felt_feverish_date','$cough','$sore_throat','$muscle_aches','$headache',
+'$shortness_breath','$vomiting','$diarrhea','$eye_infection','$rash','$fatigue','$seizures','$other','$have_symptoms','$back_normal_date','$any_medical',
+'$seek_office','$seek_office_date','$seek_clinic','$seek_clinic_date','$seek_room','$seek_room_date','$seek_department','$seek_department_date','$seek_other','$seek_other_text','$seek_other_date',
+'$seek_unknown', '$patient_hospitalized','$first_admission','$second_admission','$patient_admitted','$ic_admission','$icu_discharge','$ventilation','$ventilation_days','$discharged','$first_discharge','$second_discharge',
+'$discharged_place','$discharged_place_other','$x_ray','$pneumonia','$ards','$leukopenia','$lymphopenia','$thrombocytopenia','$other_complications','$other_complications_text','$antiviral_medications','$id_patient',
+'$oseltamivir_start','$oseltamivir_end','$oseltamivir_nb','$oseltamivir_dosage','$zanamivir_start','$zanamivir_end','$zanamivir_nb','$zanamivir_dosage','$other_influenza','$other_influenza_start','$other_influenza_end',
+'$other_influenza_nb','$other_influenza_dosage','$patient_die','$patient_die_date','$virus_infection_date','$specimen_collected','$specimen_collected_other','$influenza_diagnostic','$ridt_specimen_date','$the_result','$the_result_other','$brand','$reactive_airway',
+'$chronic_lung','$chronic_lung_specify','$chronic_heart','$chronic_heart_specify','$diabetes_mellitus','$diabetes_mellitus_specify','$renal_disease','$renal_disease_specify','$immunosuppressive_condition','$immunosuppressive_condition_specify','$chemotherapy',
+'$chemotherapy_specify','$neurodevelopmental_disorder','$neurodevelopmental_disorder_specify','$chronic_diseases','$chronic_diseases_specify','$patient_frequently','$patient_frequently_specify','$patient_pregnant','$patient_pregnant_text','$patien_pregnant_date',
+'$currently_smoke','$patient_vaccinated','$influenza_vaccination_date1','$influenza_vaccination_date2','$type_influenza_inactivated','$type_influenza_live_attenuated','$type_influenza_unknown','$travel_outside','$patient_travel_trip1_date1',
+'$patient_travel_trip1_state','$patient_travel_trip1_date2','$patient_travel_trip1_country','$patient_travel_trip1_city','$patient_travel_trip2_date1','$patient_travel_trip2_date2','$patient_travel_trip2_country','$patient_travel_trip2_state',
+'$patient_travel_trip2_city','$travel_group_alone','$travel_group_household','$travel_group_non_household','$travel_group_unknown','$live_animal','$live_animal_specify','$agricultural_fair_day','$agricultural_fair_1day',
+'$agricultural_fair_2days','$agricultural_fair_3days','$agricultural_fair_4days','$agricultural_fair_5days','$agricultural_fair_6days','$agricultural_fair_7days','$livestock_animals','$livestock_animals_specify',
+'$type_animals_horses','$type_animals_cows','$type_animals_poultry','$type_animals_sheep','$type_animals_gotas','$type_animals_pigs','$type_animals_others','$type_animals_others_text','$direct_contact_zoo',
+'$direct_contact_home','$direct_contact_work','$direct_contact_event','$direct_contact_market','$direct_contact_other','$direct_contact_other_text',
+'$indirect_contact','$indirect_contact_horses','$indirect_contact_cows','$indirect_contact_poultry','$indirect_contact_sheep','$indirect_contact_goats','$indirect_contact_pigs','$indirect_contact_other','$indirect_contact_other_text','$indirect_contact_zoo',
+'$indirect_contact_home','$indirect_contact_work','$indirect_contact_event','$indirect_contact_market','$indirect_contact_other2','$indirect_contact_other2_text',
+'$direct_indirect_contact','$direct_indirect_contact_specify','$any_contact','$any_contact_1day','$any_contact_2days','$any_contact_3days','$any_contact_4days','$any_contact_5days','$any_contact_6days','$any_contact_7days','$any_pig_contact','$household_own','$animals_kept_horses','$animals_kept_cows',
+'$animals_kept_poultry','$animals_kept_sheep','$animals_kept_goats','$animals_kept_pigs','$animals_kept_other','$animals_kept_other_text','$patient_reside','$people_resided','$patient_attend','$patient_attend_specify','$patient_class','$patient_school','$patient_school_specify','$patient_school_children',
+'$patient_ill','$members_working','$patient_handle','$patient_volunteer','$facility_job','$facility_job_other','$contact_working','$patient_hospital','$patient_hospital_date1','$patient_hospital_date2','$patient_hospital_city','$patient_clinic','$patient_clinic_date1','$patient_clinic_date2','$patient_clinic_city',
+'$close_contact','$before_household','$after_household','$patient_confirmed','$additional_comments');";
+ 
+ if (mysqli_query($conn, $sql)) 
+    {
+    	$last_id = $conn->insert_id;
+        $res = array("response" => "added","last_id" => $last_id);
+		echo json_encode($res);
+    } 
+    else 
+    {
+    	//$res = array("response" => "error");
+		//echo json_encode($res);
+        echo "Error: " . $sql . "<br>" . mysqli_error($conn);
+    }
+mysqli_close($conn);
+
+}
+
+?>
